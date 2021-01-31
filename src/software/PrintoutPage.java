@@ -5,6 +5,14 @@
  */
 package software;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.log.Level;
+import com.itextpdf.text.log.Logger;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javax.swing.JFileChooser;
 
 
@@ -593,6 +601,26 @@ public class PrintoutPage extends javax.swing.JFrame {
                 if(x==JFileChooser.APPROVE_OPTION){
                     path=j.getSelectedFile().getPath();
                 }
+               Document doc=new Document();
+               
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"Bill1.pdf"));
+            
+            doc.open();
+            PdfPTable tbl=new PdfPTable(10);
+            
+            
+            
+            
+            
+            
+            
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PrintoutPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            java.util.logging.Logger.getLogger(PrintoutPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+               
                
     }//GEN-LAST:event_PrintOutActionPerformed
 

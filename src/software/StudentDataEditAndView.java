@@ -4,9 +4,18 @@
  * and open the template in the editor.
  */
 package software;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 /**
@@ -23,6 +32,37 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
      Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
+    
+    
+       static String administrationnumber;
+    static String Firstname;
+    static    String Lastname;
+    static   String Fathername;
+    static String Mothername;
+    static   String Instrutename;
+    static String Studentnumber;
+    static String Contactnumber;
+    static String Addharnumber;
+    static String Mailid;
+    static String Course;
+    static String address;
+    static  String Religion;
+    static  String Year;
+    static  String AcademyBackground;
+    static  String Gender;
+    static  String Institute ;
+    static String Dob;
+    static String Payment ; 
+    static String Coursefees;
+    static String Gst;
+    static String Amountpaid; 
+    static String Balanceamount;
+    static String PG;
+    static String Group;
+    static String StudentWa;
+    static String ParentsWa;
+    static String dateTime;
+    static  String totalcoursefees;
     
     public StudentDataEditAndView() {
         initComponents();
@@ -69,6 +109,7 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
         ShowData = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        PrintOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +160,13 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
             }
         });
 
+        PrintOutButton.setText("PrintOut");
+        PrintOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrintOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,6 +184,8 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
                 .addGap(225, 225, 225)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PrintOutButton)
+                .addGap(111, 111, 111)
                 .addComponent(jButton3)
                 .addGap(173, 173, 173))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -155,7 +205,8 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(PrintOutButton))
                 .addGap(20, 20, 20))
         );
 
@@ -196,6 +247,145 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
                                          
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void PrintOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintOutButtonActionPerformed
+        // TODO add your handling code here:
+         String path="";
+        JFileChooser j=new JFileChooser();
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x=j.showSaveDialog(this);
+                
+                if(x==JFileChooser.APPROVE_OPTION){
+                    path=j.getSelectedFile().getPath();
+                }
+               Document doc=new Document();
+               
+        try {
+            PdfWriter.getInstance(doc, new FileOutputStream(path+"Bill1.pdf"));
+            
+            doc.open();
+            PdfPTable tbl=new PdfPTable(29);
+            
+            
+            tbl.addCell( "administrationnumber");
+            tbl.addCell( "Firstname");
+            tbl.addCell( "Lastname");
+            tbl.addCell( "Fathername");
+            tbl.addCell( "Mothername");
+            tbl.addCell( "Religion");
+            tbl.addCell( "Dob");
+            tbl.addCell( "Gender");
+            tbl.addCell( "Institute");
+            tbl.addCell( "Instrutename");
+            tbl.addCell( "AcademyBackground");
+            tbl.addCell( "Group");
+            tbl.addCell( "Year");
+            tbl.addCell( "Course");
+            tbl.addCell( "PG");
+            tbl.addCell( "Studentnumber");
+            tbl.addCell( "StudentWa");
+            tbl.addCell( "Contactnumber");
+            tbl.addCell( "ParentsWa");
+            tbl.addCell( "Addharnumber");
+            tbl.addCell( "Mailid");
+            tbl.addCell( "address");
+            tbl.addCell( "Payment");
+            tbl.addCell( "Coursefees");
+            tbl.addCell( "Gst");
+            tbl.addCell( "Amountpaid");
+            tbl.addCell( "totalcoursefees ");
+            tbl.addCell( "Balanceamount");
+            tbl.addCell( "dateTime");
+            
+            try{
+                   String sql="Select * FROM Registrationtable";
+                   pst =con.prepareStatement(sql);
+                   rs=pst.executeQuery();
+                   administrationnumber=rs.getString("administrationnumber");
+                   Firstname=rs.getString("Firstname");
+                   Lastname=rs.getString("Lastname");
+                   Fathername=rs.getString("Fathername");
+                   Mothername=rs.getString("Mothername");
+                  Religion=rs.getString("Religion");
+                    Dob=rs.getString("Dob");
+                   Gender=rs.getString("Gender");
+                  Institute=rs.getString("Institute");
+                   Instrutename=rs.getString("Institutename");
+                   AcademyBackground=rs.getString("AcademyBackground");
+                   Group=rs.getString("grouptype");
+                   Year=rs.getString("Year");
+                  Course=rs.getString("Course");
+                   PG=rs.getString("Parentguardian");
+                   Studentnumber=rs.getString("Studentnumber");
+                   StudentWa=rs.getString("StudentWhatsapp");
+                   Contactnumber=rs.getString("Parentnumber");
+                   ParentsWa=rs.getString("ParentsWhatsapp");
+                   Addharnumber=rs.getString("Addharnumber");
+                   Mailid=rs.getString("Mailid");
+                   address=rs.getString("address");
+                    Payment=rs.getString("Payment");
+                   Coursefees=rs.getString( "Coursefees");
+                 Gst=rs.getString("Gst");
+                  Amountpaid=rs.getString("Amountpaid");
+                   totalcoursefees=rs.getString("totalfees");
+                   Balanceamount=rs.getString("Balanceamount");
+                   dateTime=rs.getString("dateTime");
+                  
+                  
+            
+                    System.out.println("1");
+            }catch(SQLException e){
+                 System.out.println("2"+e);
+             }finally{
+                 try{
+                    
+                     pst.close();
+                     System.out.println("3");
+                 }catch(SQLException e){
+                     System.out.println("4"+e);
+                 }
+             }
+           
+             tbl.addCell( administrationnumber);
+            tbl.addCell( Firstname);
+            tbl.addCell( Lastname);
+            tbl.addCell(Fathername);
+            tbl.addCell( Mothername);
+            tbl.addCell( Religion);
+            tbl.addCell(Dob);
+            tbl.addCell( Gender);
+            tbl.addCell( Institute);
+            tbl.addCell( Instrutename);
+            tbl.addCell( AcademyBackground);
+            tbl.addCell( Group);
+            tbl.addCell( Year);
+            tbl.addCell( Course);
+            tbl.addCell( PG);
+            tbl.addCell( Studentnumber);
+            tbl.addCell( StudentWa);
+            tbl.addCell( Contactnumber);
+            tbl.addCell( ParentsWa);
+            tbl.addCell( Addharnumber);
+            tbl.addCell( Mailid);
+            tbl.addCell( address);
+            tbl.addCell( Payment);
+            tbl.addCell( Coursefees);
+            tbl.addCell( Gst);
+            tbl.addCell( Amountpaid);
+            tbl.addCell( totalcoursefees);
+            tbl.addCell(Balanceamount);
+            tbl.addCell( dateTime);
+            
+            doc.add(tbl);
+            
+            
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            java.util.logging.Logger.getLogger(PrintoutPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+         doc.close();      
+          JOptionPane.showMessageDialog(rootPane,"Downloaded");
+    }//GEN-LAST:event_PrintOutButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +422,7 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PrintOutButton;
     private javax.swing.JTable ShowData;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
