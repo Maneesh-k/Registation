@@ -6,6 +6,7 @@
 package software;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
@@ -160,7 +161,7 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
             }
         });
 
-        PrintOutButton.setText("PrintOut");
+        PrintOutButton.setText("Print");
         PrintOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintOutButtonActionPerformed(evt);
@@ -296,7 +297,8 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
             tbl.addCell( "Balanceamount");
             tbl.addCell( "dateTime");
             
-            try{
+       
+           try{
                    String sql="Select * FROM Registrationtable";
                    pst =con.prepareStatement(sql);
                    rs=pst.executeQuery();
@@ -375,12 +377,15 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
             tbl.addCell(Balanceamount);
             tbl.addCell( dateTime);
             
+       
             doc.add(tbl);
             
             
+            System.out.println("Printout Sucessfull");
             
         } catch (FileNotFoundException | DocumentException ex) {
             java.util.logging.Logger.getLogger(PrintoutPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+             System.out.println("Printout Fails"+ex);
         }
          doc.close();      
           JOptionPane.showMessageDialog(rootPane,"Downloaded");

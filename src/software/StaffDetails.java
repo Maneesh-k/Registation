@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
+import java.text.*;
+import java.awt.print.*;
 
 /**
  *
@@ -71,6 +73,7 @@ public class StaffDetails extends javax.swing.JFrame {
         UpdateButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        PrintOutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +129,13 @@ public class StaffDetails extends javax.swing.JFrame {
             }
         });
 
+        PrintOutButton.setText("Print");
+        PrintOutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrintOutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,6 +154,8 @@ public class StaffDetails extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(PrintOutButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UpdateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158)
@@ -167,7 +179,8 @@ public class StaffDetails extends javax.swing.JFrame {
                     .addComponent(UpdateButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PrintOutButton))
                 .addContainerGap())
         );
 
@@ -214,6 +227,24 @@ public class StaffDetails extends javax.swing.JFrame {
         staffdata.setVisible(true);
     }//GEN-LAST:event_UpdateButtonActionPerformed
 
+    private void PrintOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintOutButtonActionPerformed
+        // TODO add your handling code here:
+        MessageFormat header=new MessageFormat("FirstStep Institute");
+        MessageFormat footer=new MessageFormat("Page{0,number,Interger}");
+        
+        try{
+            
+            
+            ShowData.print(JTable.PrintMode.NORMAL,header,footer);
+            
+            
+            
+            
+        } catch(java.awt.print.PrinterException e){
+            System.err.format("Cannot print %s%n", e.getMessage());
+        }
+    }//GEN-LAST:event_PrintOutButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +281,7 @@ public class StaffDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton PrintOutButton;
     private javax.swing.JTable ShowData;
     private javax.swing.JButton UpdateButton;
     private javax.swing.JButton jButton1;

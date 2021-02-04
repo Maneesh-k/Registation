@@ -3,9 +3,12 @@ package software;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -59,15 +62,15 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         t.stop();
     }
     
-    static int administrationnumber=2;
+    static long administrationnumber=2;
     static String Firstname;
     static    String Lastname;
     static   String Fathername;
     static String Mothername;
     static   String Instrutename;
-    static  int Studentnumber;
-    static int Contactnumber;
-    static int Addharnumber;
+    static  long Studentnumber;
+    static long Contactnumber;
+    static long Addharnumber;
     static String Mailid;
     static String Course;
     static String address;
@@ -78,10 +81,10 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     static  String Institute ;
     static String Dob;
     static String Payment ; 
-    static int Coursefees;
-    static int Gst;
-    static int Amountpaid; 
-    static int Balanceamount;
+    static long Coursefees;
+    static long Gst;
+    static long Amountpaid; 
+    static long Balanceamount;
     static String PG;
     static String Group;
     static String StudentWa;
@@ -89,10 +92,10 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     static String dateTime;
     
     static  int totalcoursefees;
-    SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat SDF=new SimpleDateFormat("dd-MM-yyyy");
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date date = new Date();
-
+    Date DATE = new Date();
+   
     
     
     
@@ -1000,16 +1003,20 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1054,7 +1061,10 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         Dob= SDF.format(DOB.getValue());
         PG=PGName.getText();
         Group=GetGroup.getText();
-        dateTime= String.valueOf(formatter.format(date));
+        dateTime=SDF.format(DATE);
+            
+             
+            
         address=Address.getText();
         
                
@@ -1120,7 +1130,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                    String sql="INSERT INTO Registrationtable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                    pst =con.prepareStatement(sql);
              
-             pst.setInt(1,  administrationnumber);    //1
+             pst.setLong(1,  administrationnumber);    //1
               pst.setString(2, Firstname);    //2
                pst.setString(3, Lastname);  //3
                 pst.setString(4, Fathername);  //4 
@@ -1135,20 +1145,20 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                       pst.setString(13, Year);   //13 
                      pst.setString(14,  Course);   //14
                        pst.setString(15, PG);   //15
-                       pst.setInt(16, Studentnumber);    //16 
+                       pst.setLong(16, Studentnumber);    //16 
                         pst.setString(17, StudentWa);   //17 
-                        pst.setInt(18, Contactnumber);    //18
+                        pst.setLong(18, Contactnumber);    //18
                          pst.setString(19, ParentsWa);   //19
-                        pst.setInt(20,  Addharnumber);     //20
+                        pst.setLong(20,  Addharnumber);     //20
                          pst.setString(21, Mailid);    //21
                           pst.setString(22, address);   //22
                            pst.setString(23,  Payment); //23
-                            pst.setInt(24, Coursefees);   ///24
-                             pst.setInt(25, Gst);  //25 
-                              pst.setInt(26,  Amountpaid);   //26
+                            pst.setLong(24, Coursefees);   ///24
+                             pst.setLong(25, Gst);  //25 
+                              pst.setLong(26,  Amountpaid);   //26
                                pst.setInt(27,totalcoursefees );  //27
-                               pst.setInt(28, Balanceamount);  //28
-                                pst.setString(29,dateTime);  //29
+                               pst.setLong(28, Balanceamount);  //28
+                                pst.setString(29, dateTime);  //29
                                 
                                 
                          pst.execute();
@@ -1472,12 +1482,12 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
     private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
         // Calculation for the fees
-          Coursefees=Integer.valueOf(CourseFees.getText());
+          Coursefees=Long.valueOf(CourseFees.getText());
         Gst=Integer.valueOf(GST.getText());
-          Amountpaid=Integer.valueOf(AmountPaid.getText());
+          Amountpaid=Long.valueOf(AmountPaid.getText());
         
-        int Gstamount=Coursefees*Gst/100;
-        totalcoursefees=Coursefees+Gstamount;
+        long Gstamount=Coursefees*Gst/100;
+        totalcoursefees=(int) (Coursefees+Gstamount);
         Balanceamount=totalcoursefees-Amountpaid;
         ShowBill.setText("                             My First Step Computer Skill"
                         +"\n Course Fees                                                         "+String.valueOf(Coursefees)

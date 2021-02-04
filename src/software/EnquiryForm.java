@@ -28,9 +28,9 @@ public class EnquiryForm extends javax.swing.JFrame {
     static   String Fathername;
     static String Mothername;
     static   String Instrutename;
-    static  int Studentnumber;
-    static int Contactnumber;
-    static int Addharnumber;
+    static  long Studentnumber;
+    static long Contactnumber;
+    static long Addharnumber;
     static String Mailid;
     static String Course;
     static String address;
@@ -45,9 +45,11 @@ public class EnquiryForm extends javax.swing.JFrame {
     static String StudentWa;
     static String ParentsWa;
     static String dateTime;
-    static int administrationnumber=1000;
+    static long administrationnumber=1000;
     static String aboutMyfs;
     static String Referncename=null;
+    
+    //for date
        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
        Date date = new Date();
@@ -871,7 +873,7 @@ public class EnquiryForm extends javax.swing.JFrame {
             Dob= sdf.format(DOB.getValue());
             PG=PGName.getText();
             Group=GetGroup.getText();
-            dateTime= String.valueOf(formatter.format(date));
+             dateTime=sdf.format(date);
             address=Address.getText();
             
             Referncename=ReferenceName.getText();
@@ -950,7 +952,7 @@ public class EnquiryForm extends javax.swing.JFrame {
                    String sql="INSERT INTO Enquriytable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                    pst =con.prepareStatement(sql);
              
-             pst.setInt(1,  administrationnumber);    //1
+             pst.setLong(1,  administrationnumber);    //1
               pst.setString(2, Firstname);    //2
                pst.setString(3, Lastname);  //3
                 pst.setString(4, Fathername);  //4 
@@ -964,8 +966,8 @@ public class EnquiryForm extends javax.swing.JFrame {
                      pst.setString(12, Group);   //12
                       pst.setString(13, Year);   //13 
                      pst.setString(14,  Course);   //14
-                     pst.setInt(15, Studentnumber);    //15
-                       pst.setInt(16, Contactnumber);    //16
+                     pst.setLong(15, Studentnumber);    //15
+                       pst.setLong(16, Contactnumber);    //16
                         pst.setString(17, Mailid);    //17
                           pst.setString(18, address);   //18
                            pst.setString(19,dateTime);  //19

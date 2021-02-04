@@ -5,15 +5,13 @@
  */
 package software;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.log.Level;
-import com.itextpdf.text.log.Logger;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import javax.swing.JFileChooser;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.swing.JPanel;
 
 
 /**
@@ -28,10 +26,10 @@ public class PrintoutPage extends javax.swing.JFrame {
     public PrintoutPage() {
         initComponents();
     }
-    public void DataStudent(String Firstname,String Lastname,String Fathername,String Instrutename,int Studentnumber,int Contactnumber,
-         int Addharnumber,String Mailid,String Course,String address,String Religion,String Year,String AcademyBackground,
-         String Gender,String Institute,String Dob,String Payment ,int Coursefees,int Gst,int Amountpaid,int Balanceamount,
-         String PG,String Group,String Education,String DateTime,int administrationnumber){
+    public void DataStudent(String Firstname,String Lastname,String Fathername,String Instrutename,long Studentnumber,long Contactnumber,
+         long Addharnumber,String Mailid,String Course,String address,String Religion,String Year,String AcademyBackground,
+         String Gender,String Institute,String Dob,String Payment ,long Coursefees,long Gst,long Amountpaid,long Balanceamount,
+         String PG,String Group,String Education,String DateTime,long administrationnumber){
         
        ShowFirstName.setText(Firstname);
         ShowLastName.setText(Lastname);
@@ -71,7 +69,7 @@ public class PrintoutPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        PrintPanel = new javax.swing.JPanel();
         MY = new java.awt.Label();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -137,7 +135,7 @@ public class PrintoutPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        PrintPanel.setBackground(new java.awt.Color(204, 204, 255));
 
         MY.setCursor(new java.awt.Cursor(java.awt.Cursor.SE_RESIZE_CURSOR));
         MY.setFont(new java.awt.Font("Ink Free", 1, 48)); // NOI18N
@@ -532,48 +530,48 @@ public class PrintoutPage extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jButton3.setText("Exit");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout PrintPanelLayout = new javax.swing.GroupLayout(PrintPanel);
+        PrintPanel.setLayout(PrintPanelLayout);
+        PrintPanelLayout.setHorizontalGroup(
+            PrintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PrintPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(343, 343, 343))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(PrintPanelLayout.createSequentialGroup()
+                .addGroup(PrintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PrintPanelLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addComponent(PrintOut)
                         .addGap(248, 248, 248)
                         .addComponent(jButton2)
                         .addGap(224, 224, 224)
                         .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PrintPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(177, 177, 177))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PrintPanelLayout.setVerticalGroup(
+            PrintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PrintPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PrintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(MY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PrintPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PrintOut)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addGap(74, 74, 74))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        jScrollPane1.setViewportView(PrintPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -593,7 +591,7 @@ public class PrintoutPage extends javax.swing.JFrame {
 
     private void PrintOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintOutActionPerformed
         // TODO add your handling code here:
-        String path="";
+      /*  String path="";
         JFileChooser j=new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x=j.showSaveDialog(this);
@@ -621,9 +619,46 @@ public class PrintoutPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PrintoutPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
                
-               
+             */
+      
+      printRecord(PrintPanel) ;
+      
+      
+      
     }//GEN-LAST:event_PrintOutActionPerformed
 
+    private void printRecord(JPanel panel){
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        printerJob.setJobName("Print Record");
+        printerJob.setPrintable(new Printable() {
+            @Override
+            public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+              if(pageIndex > 0){
+              return Printable.NO_SUCH_PAGE;
+              }
+              
+              Graphics2D graphics2d=(Graphics2D)graphics;
+              
+              graphics2d.translate(pageFormat.getImageableX()*2,pageFormat.getImageableY()*2);
+              graphics2d.scale(0.5,0.5 );
+              panel.paint(graphics2d);
+              return Printable.PAGE_EXISTS;
+            }
+        });
+        boolean returningResult = printerJob.printDialog();
+        if(returningResult){
+            try{
+                printerJob.print();
+            } catch(PrinterException e){
+                System.out.println("fails"+e);
+            }
+    }
+        
+    }
+    
+    
+    
+    
     private void ShowEducationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowEducationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ShowEducationActionPerformed
@@ -670,6 +705,7 @@ public class PrintoutPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label MY;
     private javax.swing.JButton PrintOut;
+    private javax.swing.JPanel PrintPanel;
     private javax.swing.JTextField ShowAddharNumber;
     private javax.swing.JTextField ShowAddress;
     private javax.swing.JTextField ShowAdminNumber;
@@ -727,7 +763,6 @@ public class PrintoutPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

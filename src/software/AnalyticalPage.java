@@ -5,11 +5,22 @@
  */
 package software;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-
+import javax.swing.JTable;
+import net.proteanit.sql.DbUtils;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 /**
@@ -22,8 +33,22 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
      * Creates new form AnalitcalPage
      */
     
+    //Sqlite connection
+      Connection con=null;
+    PreparedStatement pst=null;
+    ResultSet rs=null;
+    
+   static String from;
+   static String to;
       int hour,minute,second;
     Thread t=new Thread(this);
+    
+    
+    
+    //From and To date need this
+     SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date date = new Date();
     
     public AnalyticalPage() {
         initComponents();
@@ -62,14 +87,31 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         ShowDate = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        ShowChart = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        FromDate = new javax.swing.JSpinner();
+        ToDate = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel4.setText("AnalyticalPage");
 
+        Showtime.setBackground(new java.awt.Color(255, 255, 255));
         Showtime.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
+        ShowDate.setBackground(new java.awt.Color(255, 255, 255));
         ShowDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         jButton4.setText("Back");
@@ -86,39 +128,192 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             }
         });
 
+        ShowChart.setBackground(new java.awt.Color(255, 255, 255));
+        ShowChart.setLayout(new java.awt.BorderLayout());
+
+        jButton2.setText("Show Chart");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        FromDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        FromDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1167658500000L), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+        FromDate.setEditor(new javax.swing.JSpinner.DateEditor(FromDate, "yyyy-MM-dd"));
+        FromDate.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                FromDateAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        ToDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        ToDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
+        ToDate.setEditor(new javax.swing.JSpinner.DateEditor(ToDate, "yyyy-MM-dd"));
+        ToDate.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                ToDateAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+
+        jLabel1.setText("TO");
+
+        jLabel2.setText("FROM");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(ShowChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2)
+                .addGap(48, 48, 48)
+                .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(45, 45, 45)
+                .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jButton2)
+                .addGap(89, 89, 89))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(ShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Months", jPanel1);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 286, Short.MAX_VALUE)
+        );
+
+        jButton5.setText("jButton5");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(637, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(40, 40, 40))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton5)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Refference", jPanel3);
+
+        jTabbedPane1.addTab("Enquiry", jTabbedPane2);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 314, Short.MAX_VALUE)
+        );
+
+        jButton3.setText("jButton3");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(625, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(57, 57, 57))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(0, 43, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Registration", jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addComponent(jButton1))
                 .addGap(203, 203, 203)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGap(167, 167, 167)
                 .addComponent(Showtime, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(ShowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ShowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ShowDate, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(Showtime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(437, 437, 437)
-                .addComponent(jButton1)
-                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4)))
+                    .addComponent(ShowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Showtime, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
+                .addGap(52, 52, 52))
         );
 
         pack();
@@ -135,6 +330,86 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+          from= SDF.format(FromDate.getValue());
+          to=SDF.format(ToDate.getValue());
+        
+        
+       // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
+        try{
+          //  table_name WHERE yourdate BETWEEN '2012-12-12' and '2013-12-12'  
+                   String sql="Enquriytable WHERE dateTime BETWEEN ? AND ? ;"+
+                           "SELECT COUNT"
+                           + "(CASE WHEN aboutMyfs='Online' THEN ? END)"
+                           +"(CASE WHEN aboutMyfs='Advertisement' THEN ? END"
+                           + "(CASE WHEN aboutMyfs='Friends' THEN ? END"
+                           + "(CASE WHEN aboutMyfs='Pamphlet' THEN ? END"
+                           + "(CASE WHEN aboutMyfs='Other' THEN ? END"
+                           + "(CASE WHEN aboutMyfs='none' THEN ? END"
+                           + " FROM Enquriytable;";
+                   pst =con.prepareStatement(sql);
+                   rs=pst.executeQuery();
+                   
+                     pst.setString(1,from);    //1
+              pst.setString(2, to);    //2
+              int online=pst.getUpdateCount();
+              int Advertisement=pst.getUpdateCount();
+              int Friends=pst.getUpdateCount();
+              int Pamphlet=pst.getUpdateCount();
+              int Other=pst.getUpdateCount();
+              int none=pst.getUpdateCount();
+              System.out.println(online+Advertisement+Friends+Pamphlet+Other+none);
+              
+               //  while (rs.next()) {
+               /*System.out.println(rs.getInt("id") +  "\t" + 
+                                   rs.getString("name") + "\t" +
+                                   rs.getDouble("capacity"));*/
+               
+               
+          //  }
+            
+                    System.out.println("1");
+            }catch(Exception e){
+                 System.out.println("2"+e);
+             }finally{
+                 try{
+                    
+                     pst.close();
+                     System.out.println("3");
+                 }catch(Exception e){
+                     System.out.println("4"+e);
+                 }
+             }
+     
+        DefaultCategoryDataset dod=new DefaultCategoryDataset();
+         dod.setValue(5.12,"No.Of join","online");
+        dod.setValue(5.12,"No.Of join","Advertisement");
+        dod.setValue(4.12,"No.Of join","Friends");
+        dod.setValue(3.12,"No.Of join","Pamphlet");
+        dod.setValue(2.12,"No.Of join","Other");
+        dod.setValue(1.12,"No.Of join","none");
+        JFreeChart jchart=ChartFactory.createBarChart3D("Student Record","Months","No.Of join",dod,PlotOrientation.VERTICAL,true,true,false);
+     
+            CategoryPlot plot=jchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.black);
+            ChartPanel barPanel=new ChartPanel(jchart) ;
+            ShowChart.removeAll();
+            ShowChart.add(barPanel,BorderLayout.CENTER);
+            ShowChart.validate();
+            
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void FromDateAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_FromDateAncestorAdded
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_FromDateAncestorAdded
+
+    private void ToDateAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ToDateAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ToDateAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -173,10 +448,25 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner FromDate;
+    private javax.swing.JPanel ShowChart;
     private javax.swing.JLabel ShowDate;
     private javax.swing.JLabel Showtime;
+    private javax.swing.JSpinner ToDate;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
 }
