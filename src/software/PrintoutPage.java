@@ -26,8 +26,8 @@ public class PrintoutPage extends javax.swing.JFrame {
     public PrintoutPage() {
         initComponents();
     }
-    public void DataStudent(String Firstname,String Lastname,String Fathername,String Instrutename,long Studentnumber,long Contactnumber,
-         long Addharnumber,String Mailid,String Course,String address,String Religion,String Year,String AcademyBackground,
+    public void DataStudent(String Firstname,String Lastname,String Fathername,String Instrutename,String Studentnumber,String Contactnumber,
+         String Addharnumber,String Mailid,String Course,String address,String Religion,String Year,String AcademyBackground,
          String Gender,String Institute,String Dob,String Payment ,long Coursefees,long Gst,long Amountpaid,long Balanceamount,
          String PG,String Group,String Education,String DateTime,long administrationnumber){
         
@@ -35,8 +35,8 @@ public class PrintoutPage extends javax.swing.JFrame {
         ShowLastName.setText(Lastname);
         ShowFatherName.setText(Fathername);
         ShowInstruteName.setText(Instrutename);
-        ShowStudentNumber.setText(String.valueOf(Studentnumber));
-        ShowContactNumber.setText(String.valueOf(Contactnumber));
+        ShowStudentNumber.setText(Studentnumber);
+        ShowContactNumber.setText(Contactnumber);
         ShowAddharNumber.setText(String.valueOf(Addharnumber));
         ShowMailId.setText( Mailid);
         ShowCourse.setText(Course);

@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import net.proteanit.sql.DbUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -46,15 +47,15 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
     
     
     //From and To date need this
-     SimpleDateFormat SDF=new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+     
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date();
     
     public AnalyticalPage() {
         initComponents();
             ShowDate.setText(String.valueOf(java.time.LocalDate.now()));
           t.start();
-        
+         con=ConnectionDb.DbConnection();
     }
     
      @Override
@@ -65,7 +66,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         minute= cal.get (Calendar.MINUTE);
         second= cal.get (Calendar.SECOND);
         
-        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
         Date dat=cal.getTime();
         String Time=sdf.format(dat);
         Showtime.setText(Time);
@@ -92,10 +93,10 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         jPanel1 = new javax.swing.JPanel();
         ShowChart = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
-        FromDate = new javax.swing.JSpinner();
-        ToDate = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        FromDate = new com.toedter.calendar.JDateChooser();
+        ToDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
@@ -138,32 +139,6 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             }
         });
 
-        FromDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        FromDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1167658500000L), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
-        FromDate.setEditor(new javax.swing.JSpinner.DateEditor(FromDate, "yyyy-MM-dd"));
-        FromDate.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                FromDateAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
-        ToDate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        ToDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
-        ToDate.setEditor(new javax.swing.JSpinner.DateEditor(ToDate, "yyyy-MM-dd"));
-        ToDate.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                ToDateAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         jLabel1.setText("TO");
 
         jLabel2.setText("FROM");
@@ -176,13 +151,13 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2)
-                .addGap(48, 48, 48)
-                .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
+                .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
+                .addGap(60, 60, 60)
+                .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
                 .addComponent(jButton2)
                 .addGap(89, 89, 89))
         );
@@ -191,12 +166,14 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(ShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -333,45 +310,30 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          from= SDF.format(FromDate.getValue());
-          to=SDF.format(ToDate.getValue());
+          
         
         
        // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
-        try{
-          //  table_name WHERE yourdate BETWEEN '2012-12-12' and '2013-12-12'  
-                   String sql="Enquriytable WHERE dateTime BETWEEN ? AND ? ;"+
-                           "SELECT COUNT"
-                           + "(CASE WHEN aboutMyfs='Online' THEN ? END)"
-                           +"(CASE WHEN aboutMyfs='Advertisement' THEN ? END"
-                           + "(CASE WHEN aboutMyfs='Friends' THEN ? END"
-                           + "(CASE WHEN aboutMyfs='Pamphlet' THEN ? END"
-                           + "(CASE WHEN aboutMyfs='Other' THEN ? END"
-                           + "(CASE WHEN aboutMyfs='none' THEN ? END"
-                           + " FROM Enquriytable;";
+       try{
+                   String sql="SELECT* FROM Enquriytable  WHERE dateTime BETWEEN ? AND ?"
+                           + "SELECT COUNT(dateTime) FROM Enquriytable?";
                    pst =con.prepareStatement(sql);
-                   rs=pst.executeQuery();
+                   rs= pst.executeQuery();
                    
-                     pst.setString(1,from);    //1
-              pst.setString(2, to);    //2
-              int online=pst.getUpdateCount();
-              int Advertisement=pst.getUpdateCount();
-              int Friends=pst.getUpdateCount();
-              int Pamphlet=pst.getUpdateCount();
-              int Other=pst.getUpdateCount();
-              int none=pst.getUpdateCount();
-              System.out.println(online+Advertisement+Friends+Pamphlet+Other+none);
-              
-               //  while (rs.next()) {
-               /*System.out.println(rs.getInt("id") +  "\t" + 
-                                   rs.getString("name") + "\t" +
-                                   rs.getDouble("capacity"));*/
-               
-               
-          //  }
+                     pst.setString(1,  ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
+                     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2
+                     
+                     
+                   if(rs.next()){
+                       int sum=rs.getInt("COUNT(dateTime)");
+                       System.out.println("sum "+sum);
+                   }
+                         
+                        System.out.println("1");
+          
+                 
             
-                    System.out.println("1");
-            }catch(Exception e){
+             }catch(Exception e){
                  System.out.println("2"+e);
              }finally{
                  try{
@@ -382,7 +344,6 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
                      System.out.println("4"+e);
                  }
              }
-     
         DefaultCategoryDataset dod=new DefaultCategoryDataset();
          dod.setValue(5.12,"No.Of join","online");
         dod.setValue(5.12,"No.Of join","Advertisement");
@@ -401,15 +362,6 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             
 
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void FromDateAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_FromDateAncestorAdded
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_FromDateAncestorAdded
-
-    private void ToDateAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_ToDateAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ToDateAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -448,11 +400,11 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner FromDate;
+    private com.toedter.calendar.JDateChooser FromDate;
     private javax.swing.JPanel ShowChart;
     private javax.swing.JLabel ShowDate;
     private javax.swing.JLabel Showtime;
-    private javax.swing.JSpinner ToDate;
+    private com.toedter.calendar.JDateChooser ToDate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

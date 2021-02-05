@@ -3,17 +3,16 @@ package software;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 
 public class Registration extends javax.swing.JFrame implements Runnable{
-
+     
+    //for clock
     int hour,minute,second;
     Thread t=new Thread(this);
     
@@ -22,12 +21,15 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     ResultSet rs=null;
     
     public Registration() {
+          con=ConnectionDb.DbConnection();
         initComponents();
+          //for clock
           Showdate.setText(String.valueOf(java.time.LocalDate.now()));
+          Administrationnumber();
         AdministrationNumber.setText(String.valueOf(administrationnumber));
-          Thread t=new Thread(this);
+        
           t.start();
-           con=ConnectionDb.DbConnection();
+          
            
            InstituteLabel.setVisible(false);
        InstruteName.setVisible(false);
@@ -62,15 +64,15 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         t.stop();
     }
     
-    static long administrationnumber=2;
+    static long administrationnumber;
     static String Firstname;
     static    String Lastname;
     static   String Fathername;
     static String Mothername;
     static   String Instrutename;
-    static  long Studentnumber;
-    static long Contactnumber;
-    static long Addharnumber;
+    static String Studentnumber;
+    static String Contactnumber;
+    static String Addharnumber;
     static String Mailid;
     static String Course;
     static String address;
@@ -128,7 +130,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         UnEmployeeRadioButton = new javax.swing.JRadioButton();
         OtherEducationRadioButton = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        DOB = new javax.swing.JSpinner();
         InstruteName = new javax.swing.JTextField();
         InstituteLabel = new javax.swing.JLabel();
         yearLabel = new javax.swing.JLabel();
@@ -141,6 +142,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         AcademyBackgroundComboBox = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
         MotherName = new javax.swing.JTextField();
+        DOB = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         CourseComboBox = new javax.swing.JComboBox<>();
@@ -325,19 +327,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Date Of Birth");
 
-        DOB.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        DOB.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
-        DOB.setEditor(new javax.swing.JSpinner.DateEditor(DOB, "yyyy-MM-dd"));
-        DOB.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                DOBAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         InstruteName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         InstruteName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,6 +380,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel34.setText("Mother Name");
 
         MotherName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+
+        DOB.setDateFormatString("dd-MMM-yyyy");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -446,10 +437,12 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                         .addGap(18, 18, 18)
                         .addComponent(UnEmployeeRadioButton))
                     .addComponent(OtherEducationRadioButton)
-                    .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(MotherName, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(LastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)))
+                        .addComponent(LastName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(135, 135, 135))
         );
         jPanel3Layout.setVerticalGroup(
@@ -486,12 +479,13 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                     .addComponent(OtherGenderRadioButton)
                     .addComponent(OtherEducationRadioButton))
                 .addGap(31, 31, 31)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel23)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(GetReligion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel23)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(GetReligion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1051,17 +1045,17 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         Fathername=FatherName.getText().toString();
         Mothername=MotherName.getText().toString();
         Instrutename=InstruteName.getText().toString();
-        Studentnumber=Integer.valueOf(StudentNumber.getText());
-        Contactnumber=Integer.valueOf(ContactNumber.getText());
-        Addharnumber=Integer.valueOf( AddharNumber.getText());
+        Studentnumber=StudentNumber.getText();
+        Contactnumber=ContactNumber.getText();
+        Addharnumber= AddharNumber.getText();
         Mailid=MailId.getText().toLowerCase().toString();
         Course=CourseComboBox.getSelectedItem().toString();
         AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
         Religion=GetReligion.getText().toString();
-        Dob= SDF.format(DOB.getValue());
+       // Dob= SDF.format(DOB.getValue());
         PG=PGName.getText();
         Group=GetGroup.getText();
-        dateTime=SDF.format(DATE);
+        dateTime=formatter.format(DATE);
             
              
             
@@ -1136,7 +1130,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 pst.setString(4, Fathername);  //4 
                  pst.setString(5, Mothername);  //5 
                   pst.setString(6,  Religion);  //6 
-                  pst.setString(7,  Dob);   //7 
+                  pst.setString(7,   ((JTextField)DOB.getDateEditor().getUiComponent()).getText());   //7 
                    pst.setString(8,  Gender);  //8 
                    pst.setString(9, Institute);    //9
                    pst.setString(10,  Instrutename);    //10
@@ -1145,11 +1139,11 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                       pst.setString(13, Year);   //13 
                      pst.setString(14,  Course);   //14
                        pst.setString(15, PG);   //15
-                       pst.setLong(16, Studentnumber);    //16 
+                       pst.setString(16, Studentnumber);    //16 
                         pst.setString(17, StudentWa);   //17 
-                        pst.setLong(18, Contactnumber);    //18
+                        pst.setString(18, Contactnumber);    //18
                          pst.setString(19, ParentsWa);   //19
-                        pst.setLong(20,  Addharnumber);     //20
+                        pst.setString(20,  Addharnumber);     //20
                          pst.setString(21, Mailid);    //21
                           pst.setString(22, address);   //22
                            pst.setString(23,  Payment); //23
@@ -1162,7 +1156,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                                 
                                 
                          pst.execute();
-                         
+                          JOptionPane.showMessageDialog(this,"Saved,");
                         System.out.println("1");
           
                  
@@ -1178,7 +1172,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                      System.out.println("4"+e);
                  }
              }
-             administrationnumber++;
+            
     }          
     }//GEN-LAST:event_NextButtonActionPerformed
 
@@ -1186,14 +1180,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
        
     }//GEN-LAST:event_FirstNameActionPerformed
-
-    private void DOBAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_DOBAncestorAdded
-        // TODO add your handling code here:
-        
-        
-        
-         
-    }//GEN-LAST:event_DOBAncestorAdded
 
     private void FemaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleRadioButtonActionPerformed
         // TODO add your handling code here:
@@ -1501,7 +1487,39 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_ExistButtonActionPerformed
-       public static void main(String args[]) {
+private void Administrationnumber(){
+        int Administrationnumber ;
+         try{
+                   String sql= "SELECT COUNT(Firstname) FROM Registrationtable";
+                   pst =con.prepareStatement(sql);
+                   rs= pst.executeQuery();
+                   
+                  
+                     
+                   if(rs.next()){
+                     Administrationnumber =rs.getInt("COUNT(Firstname)");
+                       administrationnumber=Administrationnumber + 1000; 
+                   }
+                         
+                        System.out.println("1");
+          
+                 
+            
+             }catch(Exception e){
+                 System.out.println("2"+e);
+             }finally{
+                 try{
+                    
+                     pst.close();
+                     System.out.println("3");
+                 }catch(Exception e){
+                     System.out.println("4"+e);
+                 }
+             }
+        
+    }   
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1556,7 +1574,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField ContactNumber;
     private javax.swing.JComboBox<String> CourseComboBox;
     private javax.swing.JTextField CourseFees;
-    private javax.swing.JSpinner DOB;
+    private com.toedter.calendar.JDateChooser DOB;
     private javax.swing.JRadioButton DoublepayRadioButton;
     private javax.swing.JRadioButton EmployeeRadioButton;
     private javax.swing.JButton ExistButton;

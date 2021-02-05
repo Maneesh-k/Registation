@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,9 +29,9 @@ public class EnquiryForm extends javax.swing.JFrame {
     static   String Fathername;
     static String Mothername;
     static   String Instrutename;
-    static  long Studentnumber;
-    static long Contactnumber;
-    static long Addharnumber;
+    static  double Studentnumber;
+    static double Contactnumber;
+    static double Addharnumber;
     static String Mailid;
     static String Course;
     static String address;
@@ -45,13 +46,13 @@ public class EnquiryForm extends javax.swing.JFrame {
     static String StudentWa;
     static String ParentsWa;
     static String dateTime;
-    static long administrationnumber=1000;
+    static long administrationnumber;
     static String aboutMyfs;
     static String Referncename=null;
     
     //for date
        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
-       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
        Date date = new Date();
     
        
@@ -61,7 +62,9 @@ public class EnquiryForm extends javax.swing.JFrame {
     ResultSet rs=null;
     
     public EnquiryForm() {
+          con=ConnectionDb.DbConnection();
         initComponents();
+        Administrationnumber();
         ShowAdminstration.setText(String.valueOf(administrationnumber));
         
        referenceName.setVisible(false);
@@ -114,7 +117,6 @@ public class EnquiryForm extends javax.swing.JFrame {
         UnEmployeeRadioButton = new javax.swing.JRadioButton();
         OtherEducationRadioButton = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        DOB = new javax.swing.JSpinner();
         InstruteName = new javax.swing.JTextField();
         InstituteLabel = new javax.swing.JLabel();
         yearLabel = new javax.swing.JLabel();
@@ -127,6 +129,8 @@ public class EnquiryForm extends javax.swing.JFrame {
         AcademyBackgroundComboBox = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
         MotherName = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        DOB = new com.toedter.calendar.JDateChooser();
         jPanel9 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         CourseComboBox = new javax.swing.JComboBox<>();
@@ -314,19 +318,6 @@ public class EnquiryForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel3.setText("Date Of Birth");
 
-        DOB.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        DOB.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), new java.util.Date(-631171800000L), new java.util.Date(), java.util.Calendar.DAY_OF_MONTH));
-        DOB.setEditor(new javax.swing.JSpinner.DateEditor(DOB, "yyyy-MM-dd"));
-        DOB.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                DOBAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         InstruteName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         InstruteName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,6 +372,8 @@ public class EnquiryForm extends javax.swing.JFrame {
 
         MotherName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
+        DOB.setDateFormatString("dd-MMM-yyyy");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -419,42 +412,51 @@ public class EnquiryForm extends javax.swing.JFrame {
                         .addComponent(OtherGenderRadioButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(YearComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 219, Short.MAX_VALUE)
-                        .addComponent(GetGroup, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(EmployeeRadioButton)
                         .addGap(18, 18, 18)
                         .addComponent(UnEmployeeRadioButton))
                     .addComponent(OtherEducationRadioButton)
-                    .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(MotherName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(MotherName)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(LastName, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                             .addComponent(CollegeRadioButton)
                             .addGap(38, 38, 38)
-                            .addComponent(SchoolRadioButton))))
+                            .addComponent(SchoolRadioButton)))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(DOB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(YearComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 219, Short.MAX_VALUE)
+                        .addComponent(GetGroup, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(FatherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34)
-                            .addComponent(MotherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(23, 23, 23)
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(LastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel19)
+                                    .addComponent(FatherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel34)
+                                    .addComponent(MotherName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(MaleRadioButton)
@@ -474,9 +476,8 @@ public class EnquiryForm extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel23)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(GetReligion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -855,7 +856,7 @@ public class EnquiryForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
 
-            JOptionPane.showMessageDialog(this,"Saved,");
+           
 
             Firstname=FirstName.getText().toString();
             Lastname=LastName.getText().toString();
@@ -870,10 +871,10 @@ public class EnquiryForm extends javax.swing.JFrame {
             
             AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
             Religion=GetReligion.getText();
-            Dob= sdf.format(DOB.getValue());
+         
             PG=PGName.getText();
             Group=GetGroup.getText();
-             dateTime=sdf.format(date);
+            dateTime=formatter.format(date);
             address=Address.getText();
             
             Referncename=ReferenceName.getText();
@@ -958,7 +959,7 @@ public class EnquiryForm extends javax.swing.JFrame {
                 pst.setString(4, Fathername);  //4 
                  pst.setString(5, Mothername);  //5 
                   pst.setString(6,  Religion);  //6 
-                  pst.setString(7,  Dob);   //7 
+                  pst.setString(7, ((JTextField)DOB.getDateEditor().getUiComponent()).getText());   //7 
                    pst.setString(8,  Gender);  //8 
                    pst.setString(9, Institute);    //9
                    pst.setString(10,  Instrutename);    //10
@@ -966,15 +967,15 @@ public class EnquiryForm extends javax.swing.JFrame {
                      pst.setString(12, Group);   //12
                       pst.setString(13, Year);   //13 
                      pst.setString(14,  Course);   //14
-                     pst.setLong(15, Studentnumber);    //15
-                       pst.setLong(16, Contactnumber);    //16
+                     pst.setDouble(15, Studentnumber);    //15
+                       pst.setDouble(16, Contactnumber);    //16
                         pst.setString(17, Mailid);    //17
                           pst.setString(18, address);   //18
                            pst.setString(19,dateTime);  //19
                            pst.setString(20,aboutMyfs);   //20
                            pst.setString(21, Referncename);   //21
                                 
-                                
+                           JOptionPane.showMessageDialog(this,"Saved,");     
                          pst.execute();
                          
                         System.out.println("1");
@@ -992,49 +993,42 @@ public class EnquiryForm extends javax.swing.JFrame {
                      System.out.println("4"+e);
                  }
              }
-administrationnumber++;
+               // TODO add your handling code here:
+        OptionForm optionform =new OptionForm();
+        optionform.setVisible(true);
+             
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-        // TODO add your handling code here:
-
-    
-
-            
-
-            Firstname=null;
-            Lastname=null;
-            Fathername=null;
-            Mothername=null;
-            Instrutename=null;
-            StudentNumber.setText(null);
-            ContactNumber.setText(null);
-
-            Mailid=null;
-            Course=null;
-            AcademyBackground=null;
-            Religion=null;
-            Dob=null;
-            PG=null;
-            Group=null;
-            dateTime= null;
-            address=null;
-            Referncename=null;
-        
-
-            aboutMyfs=null;
+           FirstName.setText(null);
+           LastName.setText(null);
+           FatherName.setText(null);
+           MotherName.setText(null);
+           InstruteName.setText(null);
+           MailId.setText(null);
+           
+           GetReligion.setText(null);
+           PGName.setText(null);
+           GetGroup.setText(null);
+           
+           Address.setText(null);
+           
+           OnlineRadioButton.setSelected(false);
+           AdvertisementRadioButton.setSelected(false);
+           PamphletRadioButton.setSelected(false);
+           OtherEduRadioButton.setSelected(false);
+           NoneRadioButton.setSelected(false);
+           FriendsRadioButton.setSelected(false);
           
-
-            StudentWa=null;
-          
-
-            ParentsWa=null;
-          
-            
-            Gender=null;
-          
-            Institute =null;
-   
+           
+           StudentwaCheckBox.setSelected(false);
+           ParentwaCheckBox.setSelected(false);
+           MaleRadioButton.setSelected(false);
+           OtherGenderRadioButton.setSelected(false);
+           FemaleRadioButton.setSelected(false);
+           StudentNumber.setText(null);
+           ContactNumber.setText(null);
+         
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void NoneRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoneRadioButtonActionPerformed
@@ -1214,10 +1208,6 @@ administrationnumber++;
         // TODO add your handling code here:
     }//GEN-LAST:event_InstruteNameActionPerformed
 
-    private void DOBAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_DOBAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DOBAncestorAdded
-
     private void OtherEducationRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtherEducationRadioButtonActionPerformed
         // TODO add your handling code here:
         if(OtherEducationRadioButton.isSelected()){
@@ -1356,6 +1346,38 @@ administrationnumber++;
         optionform.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    private void Administrationnumber(){
+        int Administrationnumber ;
+         try{
+                   String sql= "SELECT COUNT(Firstname) FROM Registrationtable";
+                   pst =con.prepareStatement(sql);
+                   rs= pst.executeQuery();
+                   
+                  
+                     
+                   if(rs.next()){
+                     Administrationnumber =rs.getInt("COUNT(Firstname)");
+                       administrationnumber=1000+Administrationnumber;
+                   }
+                         
+                        System.out.println("1");
+          
+                 
+            
+             }catch(Exception e){
+                 System.out.println("2"+e);
+             }finally{
+                 try{
+                    
+                     pst.close();
+                     System.out.println("3");
+                 }catch(Exception e){
+                     System.out.println("4"+e);
+                 }
+             }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -1399,7 +1421,7 @@ administrationnumber++;
     private javax.swing.JRadioButton CollegeRadioButton;
     private javax.swing.JTextField ContactNumber;
     private javax.swing.JComboBox<String> CourseComboBox;
-    private javax.swing.JSpinner DOB;
+    private com.toedter.calendar.JDateChooser DOB;
     private javax.swing.JRadioButton EmployeeRadioButton;
     public static javax.swing.JTextField FatherName;
     private javax.swing.JRadioButton FemaleRadioButton;
@@ -1433,6 +1455,7 @@ administrationnumber++;
     private javax.swing.JPanel gffbfg;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
