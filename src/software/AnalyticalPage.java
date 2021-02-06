@@ -41,6 +41,12 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
     
    static String from;
    static String to;
+   static int FriendsCount;
+   static int AdvertisementCount ;
+   static int OtherCount;
+   static int PamphletCount;
+   static int noneCount;
+   static int OnlineCount;
       int hour,minute,second;
     Thread t=new Thread(this);
     
@@ -143,6 +149,11 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
 
         jLabel2.setText("FROM");
 
+        FromDate.setDateFormatString("yyyy-MM-dd");
+
+        ToDate.setDateFormatString("yyyy-MM-dd");
+        ToDate.setMinSelectableDate(new java.util.Date(-62135785719000L));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,7 +164,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
                 .addComponent(jLabel2)
                 .addGap(75, 75, 75)
                 .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(60, 60, 60)
                 .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,26 +319,39 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-          
-        
-        
-       // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
-       try{
-                   String sql="SELECT* FROM Enquriytable  WHERE dateTime BETWEEN ? AND ?"
-                           + "SELECT COUNT(dateTime) FROM Enquriytable?";
-                   pst =con.prepareStatement(sql);
-                   rs= pst.executeQuery();
-                   
-                     pst.setString(1,  ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
-                     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2
+    
+    private void getEnquriydataGraph(){
+           // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
+         try{
+                   String sql= "SELECT * FROM   Enquriytable WHERE Dob BETWEEN '?' and '?';";
+                     pst =con.prepareStatement(sql);
                      
+                     pst.setString(1, ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
+                     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2 
                      
-                   if(rs.next()){
-                       int sum=rs.getInt("COUNT(dateTime)");
-                       System.out.println("sum "+sum);
+                     rs= pst.executeQuery();
+                     
+                String sql1= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
+                                +"SUM(CASE WHEN aboutMyfs = 'Advertisement' THEN 1 ELSE 0 END) as AdvertisementCount,SUM(CASE WHEN aboutMyfs = 'Pamphlet' THEN 1 ELSE 0 END) as PamphletCount,"
+                                +"SUM(CASE WHEN aboutMyfs = 'Other' THEN 1 ELSE 0 END) as OtherCount,SUM(CASE WHEN aboutMyfs = 'none' THEN 1 ELSE 0 END) as noneCount,"
+                                +"COUNT(*) as TotalCount FROM Enquriytable;";
+
+                   pst =con.prepareStatement(sql1);
+                   rs= pst.getResultSet();
+                      if(rs.next()){
+                    OnlineCount=rs.getInt("COUNT(OnlineCount)"); 
+                   FriendsCount= rs.getInt("COUNT(FriendsCount)");
+                   AdvertisementCount= rs.getInt("COUNT(AdvertisementCount)");
+                   PamphletCount= rs.getInt("COUNT(PamphletCount)");
+                   OtherCount= rs.getInt("COUNT(OtherCount)");
+                   noneCount= rs.getInt("COUNT(noneCount)");
                    }
+                   
+                   
+                   
+                   System.out.println(FriendsCount);
+                     
+                   
                          
                         System.out.println("1");
           
@@ -344,13 +368,29 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
                      System.out.println("4"+e);
                  }
              }
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+          
+        
+        
+    
+      
+      // OnlineCount
+       //FriendsCount
+        //AdvertisementCount 
+          //OtherCount
+            //PamphletCount
+              //noneCount
+              
+              getEnquriydataGraph();
         DefaultCategoryDataset dod=new DefaultCategoryDataset();
-         dod.setValue(5.12,"No.Of join","online");
-        dod.setValue(5.12,"No.Of join","Advertisement");
-        dod.setValue(4.12,"No.Of join","Friends");
-        dod.setValue(3.12,"No.Of join","Pamphlet");
-        dod.setValue(2.12,"No.Of join","Other");
-        dod.setValue(1.12,"No.Of join","none");
+         dod.setValue(OnlineCount,"No.Of join","online");
+        dod.setValue(AdvertisementCount,"No.Of join","Advertisement");
+        dod.setValue(FriendsCount,"No.Of join","Friends");
+        dod.setValue(PamphletCount,"No.Of join","Pamphlet");
+        dod.setValue(OtherCount,"No.Of join","Other");
+        dod.setValue(noneCount,"No.Of join","none");
         JFreeChart jchart=ChartFactory.createBarChart3D("Student Record","Months","No.Of join",dod,PlotOrientation.VERTICAL,true,true,false);
      
             CategoryPlot plot=jchart.getCategoryPlot();
