@@ -13,9 +13,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import net.proteanit.sql.DbUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -35,7 +32,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
      */
     
     //Sqlite connection
-      Connection con=null;
+    Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
     
@@ -47,8 +44,8 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
    static int PamphletCount;
    static int noneCount;
    static int OnlineCount;
-      int hour,minute,second;
-    Thread t=new Thread(this);
+   int hour,minute,second;
+   Thread t=new Thread(this);
     
     
     
@@ -323,33 +320,48 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
     private void getEnquriydataGraph(){
            // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
          try{
-                   String sql= "SELECT * FROM   Enquriytable WHERE Dob BETWEEN '?' and '?';";
+             String sql= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,COUNT(*) as TotalCount FROM Enquriytable;";
+                   pst =con.prepareStatement(sql);
+                   rs= pst.executeQuery();
+                   
+                  
+                     
+                   if(rs.next()){
+                      int Administrationnumber =rs.getInt("FriendsCount");
+                      System.out.println(Administrationnumber+"result");
+                   }
+                   
+            //       String sql= "SELECT * FROM   Enquriytable WHERE Dob BETWEEN '?' and '?';"
+              //                  + "SELECT SUM(CASE WHEN aboutMyfs = 'Online' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
+                //                +"SUM(CASE WHEN aboutMyfs = 'Advertisement' THEN 1 ELSE 0 END) as AdvertisementCount,SUM(CASE WHEN aboutMyfs = 'Pamphlet' THEN 1 ELSE 0 END) as PamphletCount,"
+                  //              +"SUM(CASE WHEN aboutMyfs = 'Other' THEN 1 ELSE 0 END) as OtherCount,SUM(CASE WHEN aboutMyfs = 'none' THEN 1 ELSE 0 END) as noneCount,"
+                    //            +"COUNT(*) as TotalCount FROM Enquriytable;";
                      pst =con.prepareStatement(sql);
+                      rs= pst.executeQuery();
+                //     pst.setString(1, ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
+                //     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2 
                      
-                     pst.setString(1, ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
-                     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2 
                      
-                     rs= pst.executeQuery();
                      
-                String sql1= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
+            /*    String sql1= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
                                 +"SUM(CASE WHEN aboutMyfs = 'Advertisement' THEN 1 ELSE 0 END) as AdvertisementCount,SUM(CASE WHEN aboutMyfs = 'Pamphlet' THEN 1 ELSE 0 END) as PamphletCount,"
                                 +"SUM(CASE WHEN aboutMyfs = 'Other' THEN 1 ELSE 0 END) as OtherCount,SUM(CASE WHEN aboutMyfs = 'none' THEN 1 ELSE 0 END) as noneCount,"
                                 +"COUNT(*) as TotalCount FROM Enquriytable;";
 
-                   pst =con.prepareStatement(sql1);
-                   rs= pst.getResultSet();
-                      if(rs.next()){
-                    OnlineCount=rs.getInt("COUNT(OnlineCount)"); 
-                   FriendsCount= rs.getInt("COUNT(FriendsCount)");
-                   AdvertisementCount= rs.getInt("COUNT(AdvertisementCount)");
-                   PamphletCount= rs.getInt("COUNT(PamphletCount)");
-                   OtherCount= rs.getInt("COUNT(OtherCount)");
-                   noneCount= rs.getInt("COUNT(noneCount)");
-                   }
+                   pst =con.prepareStatement(sql1);*/
+                   
+                  //    if(rs.next()){
+                  //  OnlineCount=rs.getInt("COUNT(OnlineCount)"); 
+                  // FriendsCount= rs.getInt("COUNT(FriendsCount)");
+                   //AdvertisementCount= rs.getInt("COUNT(AdvertisementCount)");
+               //    PamphletCount= rs.getInt("COUNT(PamphletCount)");
+               //    OtherCount= rs.getInt("COUNT(OtherCount)");
+                //   noneCount= rs.getInt("COUNT(noneCount)");
+                //   }
                    
                    
                    
-                   System.out.println(FriendsCount);
+                  // System.out.println(FriendsCount);
                      
                    
                          
@@ -369,6 +381,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
                  }
              }
     }
+   
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
           
@@ -383,9 +396,9 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             //PamphletCount
               //noneCount
               
-              getEnquriydataGraph();
+        getEnquriydataGraph();
         DefaultCategoryDataset dod=new DefaultCategoryDataset();
-         dod.setValue(OnlineCount,"No.Of join","online");
+        dod.setValue(OnlineCount,"No.Of join","online");
         dod.setValue(AdvertisementCount,"No.Of join","Advertisement");
         dod.setValue(FriendsCount,"No.Of join","Friends");
         dod.setValue(PamphletCount,"No.Of join","Pamphlet");

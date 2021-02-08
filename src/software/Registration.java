@@ -1,5 +1,7 @@
+//Package
 package software;
 
+//imports
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,58 +14,19 @@ import javax.swing.JTextField;
 
 public class Registration extends javax.swing.JFrame implements Runnable{
      
-    //for clock
+    //creating therad for clock
     int hour,minute,second;
-    Thread t=new Thread(this);
-    
-     Connection con=null;
+    Thread Rclock=new Thread(this);
+    SimpleDateFormat SDF=new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date DATE = new Date();
+ 
+    //connection for sqlite database
+    Connection con=null;
     PreparedStatement pst=null;
     ResultSet rs=null;
-    
-    public Registration() {
-          con=ConnectionDb.DbConnection();
-        initComponents();
-          //for clock
-          Showdate.setText(String.valueOf(java.time.LocalDate.now()));
-          Administrationnumber();
-        AdministrationNumber.setText(String.valueOf(administrationnumber));
-        
-          t.start();
-          
-           
-           InstituteLabel.setVisible(false);
-       InstruteName.setVisible(false);
-       yearLabel.setVisible(false);
-               YearComboBox.setVisible(false);
-               acaLabel.setVisible(false);
-                       AcademyBackgroundComboBox.setVisible(false);
-                       groupLabel.setVisible(false);
-                               GetGroup.setVisible(false);
-            
-      }
-    
-      
-    
-    @Override
-      public void run(){
-        while(true){
-        Calendar cal=Calendar.getInstance();
-        hour = cal.get(Calendar.HOUR_OF_DAY); 
-        minute= cal.get (Calendar.MINUTE);
-        second= cal.get (Calendar.SECOND);
-        
-        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
-        Date dat=cal.getTime();
-        String Time=sdf.format(dat);
-        ShowTime.setText(Time);
-        
-        }
-    }
-      
-    private void stop() {
-        t.stop();
-    }
-    
+
+    //create objects
     static long administrationnumber;
     static String Firstname;
     static    String Lastname;
@@ -92,22 +55,67 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     static String StudentWa;
     static String ParentsWa;
     static String dateTime;
-    
     static  int totalcoursefees;
-    SimpleDateFormat SDF=new SimpleDateFormat("dd-MM-yyyy");
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    Date DATE = new Date();
-   
+    
+    //main class
+    public Registration() {
+        
+        //declare connection for sqlite database
+        con=ConnectionDb.DbConnection();
+    
+        //declare he jcomponets
+        initComponents();
+    
+        //Stating the clock thread for clock
+        Rclock.start();
+        Showdate.setText(String.valueOf(java.time.LocalDate.now()));
+    
+        //caling class
+        Administrationnumber();
+        AdministrationNumber.setText(String.valueOf(administrationnumber));
+     
+        //declare the componet to be visible     
+        InstituteLabel.setVisible(false);
+        InstruteName.setVisible(false);
+        yearLabel.setVisible(false);
+        YearComboBox.setVisible(false);
+        acaLabel.setVisible(false);
+        AcademyBackgroundComboBox.setVisible(false);
+        groupLabel.setVisible(false);
+        GetGroup.setVisible(false);
+    
+    }
+    
+      
+    //override for clock thread
+    @Override
+      public void run(){
+        while(true){
+        Calendar cal=Calendar.getInstance();
+        hour = cal.get(Calendar.HOUR_OF_DAY); 
+        minute= cal.get (Calendar.MINUTE);
+        second= cal.get (Calendar.SECOND);
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
+        Date dat=cal.getTime();
+        String Time=sdf.format(dat);
+        ShowTime.setText(Time);
+        
+        }
+    }
+      
+    //create the thread for stop the clock  
+    private void stop() {
+        Rclock.stop();
+    }
     
     
-    
-  @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -198,17 +206,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1033, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1003,25 +1000,18 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void MaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
         if(MaleRadioButton.isSelected()){
             FemaleRadioButton.setSelected(false);
             OtherGenderRadioButton.setSelected(false);   
@@ -1034,14 +1024,14 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_MailIdActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
-        // TODO add your handling code here:
+        //Save the Student data in sqlite database
        if(!AgreeRadioBUtton.isSelected()){
             JOptionPane.showMessageDialog(this,"Terms and conditiion are not agreed");  
        
     }{
          //get user details 
          
-       JOptionPane.showMessageDialog(this,"Saved,");   
+          
 
         Firstname=FirstName.getText().toString();
         Lastname=LastName.getText().toString();
@@ -1112,70 +1102,67 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             Payment="Single Payment";
        }
        
-       
+       //sent thew data to next page for printout
        PrintoutPage printoutpage=new PrintoutPage();
        printoutpage.DataStudent(Firstname, Lastname, Fathername, Instrutename, Studentnumber, Contactnumber,
                Addharnumber, Mailid, Course, address, Religion, Year, AcademyBackground, Gender, Institute, 
                Dob, Payment, Coursefees, Gst, Amountpaid, Balanceamount,PG,Group,Institute,dateTime,
                administrationnumber);
        printoutpage.setVisible(true);
-       
-      stop();
       
-     
-             try{
-                   String sql="INSERT INTO Registrationtable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                   pst =con.prepareStatement(sql);
+      
+        try{
+            String sql="INSERT INTO Registrationtable VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            pst =con.prepareStatement(sql);
              
-             pst.setLong(1,  administrationnumber);    //1
-              pst.setString(2, Firstname);    //2
-               pst.setString(3, Lastname);  //3
-                pst.setString(4, Fathername);  //4 
-                 pst.setString(5, Mothername);  //5 
-                  pst.setString(6,  Religion);  //6 
-                  pst.setString(7,   ((JTextField)DOB.getDateEditor().getUiComponent()).getText());   //7 
-                   pst.setString(8,  Gender);  //8 
-                   pst.setString(9, Institute);    //9
-                   pst.setString(10,  Instrutename);    //10
-                    pst.setString(11,  AcademyBackground);    //11
-                     pst.setString(12, Group);   //12
-                      pst.setString(13, Year);   //13 
-                     pst.setString(14,  Course);   //14
-                       pst.setString(15, PG);   //15
-                       pst.setString(16, Studentnumber);    //16 
-                        pst.setString(17, StudentWa);   //17 
-                        pst.setString(18, Contactnumber);    //18
-                         pst.setString(19, ParentsWa);   //19
-                        pst.setString(20,  Addharnumber);     //20
-                         pst.setString(21, Mailid);    //21
-                          pst.setString(22, address);   //22
-                           pst.setString(23,  Payment); //23
-                            pst.setLong(24, Coursefees);   ///24
-                             pst.setLong(25, Gst);  //25 
-                              pst.setLong(26,  Amountpaid);   //26
-                               pst.setInt(27,totalcoursefees );  //27
-                               pst.setLong(28, Balanceamount);  //28
-                                pst.setString(29, dateTime);  //29
+            pst.setLong(1,  administrationnumber);                                                         //1
+            pst.setString(2, Firstname);                                                                   //2
+            pst.setString(3, Lastname);                                                                    //3
+            pst.setString(4, Fathername);                                                                  //4 
+            pst.setString(5, Mothername);                                                                  //5 
+            pst.setString(6,  Religion);                                                                   //6 
+            pst.setString(7,   ((JTextField)DOB.getDateEditor().getUiComponent()).getText());              //7 
+            pst.setString(8,  Gender);                                                                     //8 
+            pst.setString(9, Institute);                                                                   //9
+            pst.setString(10,  Instrutename);                                                              //10
+            pst.setString(11,  AcademyBackground);                                                         //11
+            pst.setString(12, Group);                                                                      //12
+            pst.setString(13, Year);                                                                       //13 
+            pst.setString(14,  Course);                                                                   //14
+            pst.setString(15, PG);                                                                        //15 
+            pst.setString(16, Studentnumber);                                                             //16 
+            pst.setString(17, StudentWa);                                                                 //17 
+            pst.setString(18, Contactnumber);                                                             //18
+            pst.setString(19, ParentsWa);                                                                 //19
+            pst.setString(20,  Addharnumber);                                                             //20
+            pst.setString(21, Mailid);                                                                    //21
+            pst.setString(22, address);                                                                   //22
+            pst.setString(23,  Payment);                                                                  //23
+            pst.setLong(24, Coursefees);                                                                  ///24
+            pst.setLong(25, Gst);                                                                         //25  
+            pst.setLong(26,  Amountpaid);                                                                 //26
+            pst.setInt(27,totalcoursefees );                                                              //27
+            pst.setLong(28, Balanceamount);                                                               //28
+            pst.setString(29, dateTime);                                                                  //29
                                 
-                                
-                         pst.execute();
-                          JOptionPane.showMessageDialog(this,"Saved,");
-                        System.out.println("1");
+             
+            pst.execute();
+            JOptionPane.showMessageDialog(this,"Saved,");
+            System.out.println("Successfully saved the student data");
           
-                 
-            
-             }catch(Exception e){
-                 System.out.println("2"+e);
-             }finally{
-                 try{
-                    
-                     pst.close();
-                     System.out.println("3");
-                 }catch(Exception e){
-                     System.out.println("4"+e);
-                 }
-             }
-            
+       }catch(Exception e){
+           System.out.println("fail to save student data"+e);
+       
+       }finally{
+            try{
+                pst.close();
+                System.out.println("Sucessfuly closed the database");
+                
+            }catch(Exception e){
+                System.out.println("fail to close the database"+e);
+            }
+        }
+        stop();
     }          
     }//GEN-LAST:event_NextButtonActionPerformed
 
@@ -1185,101 +1172,101 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_FirstNameActionPerformed
 
     private void FemaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleRadioButtonActionPerformed
-        // TODO add your handling code here:
-           if(FemaleRadioButton.isSelected()){
+        // when one radio button is selecte is set off the another
+           
+        if(FemaleRadioButton.isSelected()){
             MaleRadioButton.setSelected(false);
             OtherGenderRadioButton.setSelected(false);
-             }
+        }
     }//GEN-LAST:event_FemaleRadioButtonActionPerformed
 
     private void OtherGenderRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtherGenderRadioButtonActionPerformed
-        // TODO add your handling code here:
+        //when one radio button is selecte is set off the another
          if(OtherGenderRadioButton.isSelected()){
-            FemaleRadioButton.setSelected(false);
-            MaleRadioButton.setSelected(false);  
-            
-        }
+             
+             FemaleRadioButton.setSelected(false);
+             MaleRadioButton.setSelected(false);  
+         }
     }//GEN-LAST:event_OtherGenderRadioButtonActionPerformed
 
     private void SchoolRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SchoolRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
         if(SchoolRadioButton.isSelected()){
+            
             CollegeRadioButton.setSelected(false);
             EmployeeRadioButton.setSelected(false); 
             OtherEducationRadioButton.setSelected(false); 
-             EmployeeRadioButton.setSelected(false);
-               InstituteLabel.setVisible(true);
-       InstruteName.setVisible(true);
-       yearLabel.setVisible(true);
-               YearComboBox.setVisible(true);
-               acaLabel.setVisible(true);
-                       AcademyBackgroundComboBox.setVisible(true);
-                       groupLabel.setVisible(true);
-                               GetGroup.setVisible(true);
+            EmployeeRadioButton.setSelected(false);
+            InstituteLabel.setVisible(true);
+            InstruteName.setVisible(true);
+            yearLabel.setVisible(true);
+            YearComboBox.setVisible(true);
+            acaLabel.setVisible(true);
+            AcademyBackgroundComboBox.setVisible(true);
+            groupLabel.setVisible(true);
+            GetGroup.setVisible(true);
             
         }
     }//GEN-LAST:event_SchoolRadioButtonActionPerformed
 
     private void CollegeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CollegeRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
          if(CollegeRadioButton.isSelected()){
             SchoolRadioButton.setSelected(false);
             EmployeeRadioButton.setSelected(false); 
             OtherEducationRadioButton.setSelected(false); 
-             
             UnEmployeeRadioButton.setSelected(false);
-              InstituteLabel.setVisible(true);
-       InstruteName.setVisible(true);
-       yearLabel.setVisible(true);
-               YearComboBox.setVisible(true);
-               acaLabel.setVisible(true);
-                       AcademyBackgroundComboBox.setVisible(true);
-                       groupLabel.setVisible(true);
-                               GetGroup.setVisible(true);
+            InstituteLabel.setVisible(true);
+            InstruteName.setVisible(true);
+            yearLabel.setVisible(true);
+            YearComboBox.setVisible(true);
+            acaLabel.setVisible(true);
+            AcademyBackgroundComboBox.setVisible(true);
+            groupLabel.setVisible(true);
+            GetGroup.setVisible(true);
         }
     }//GEN-LAST:event_CollegeRadioButtonActionPerformed
 
     private void EmployeeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
          if(EmployeeRadioButton.isSelected()){
             CollegeRadioButton.setSelected(false);
-           SchoolRadioButton.setSelected(false); 
+            SchoolRadioButton.setSelected(false); 
             OtherEducationRadioButton.setSelected(false);  
             UnEmployeeRadioButton.setSelected(false);
-                InstituteLabel.setVisible(false);
-       InstruteName.setVisible(false);
-       yearLabel.setVisible(false);
-               YearComboBox.setVisible(false);
-               acaLabel.setVisible(false);
-                       AcademyBackgroundComboBox.setVisible(false);
-                       groupLabel.setVisible(false);
-                               GetGroup.setVisible(false);
+            InstituteLabel.setVisible(false);
+            InstruteName.setVisible(false);
+            yearLabel.setVisible(false);
+            YearComboBox.setVisible(false);
+            acaLabel.setVisible(false);
+            AcademyBackgroundComboBox.setVisible(false);
+            groupLabel.setVisible(false);
+            GetGroup.setVisible(false);
         }
     }//GEN-LAST:event_EmployeeRadioButtonActionPerformed
 
     private void OtherEducationRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtherEducationRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
           if(OtherEducationRadioButton.isSelected()){
-            CollegeRadioButton.setSelected(false);
-           SchoolRadioButton.setSelected(false); 
-             
-              EmployeeRadioButton.setSelected(false);
-            UnEmployeeRadioButton.setSelected(false);
-                InstituteLabel.setVisible(false);
-       InstruteName.setVisible(false);
-       yearLabel.setVisible(false);
-               YearComboBox.setVisible(false);
-               acaLabel.setVisible(false);
-                       AcademyBackgroundComboBox.setVisible(false);
-                       groupLabel.setVisible(false);
-                               GetGroup.setVisible(false);
+             CollegeRadioButton.setSelected(false);
+             SchoolRadioButton.setSelected(false); 
+             EmployeeRadioButton.setSelected(false);
+             UnEmployeeRadioButton.setSelected(false);
+             InstituteLabel.setVisible(false);
+             InstruteName.setVisible(false);
+             yearLabel.setVisible(false);
+             YearComboBox.setVisible(false);
+             acaLabel.setVisible(false);
+             AcademyBackgroundComboBox.setVisible(false);
+             groupLabel.setVisible(false);
+             GetGroup.setVisible(false);
         }
     }//GEN-LAST:event_OtherEducationRadioButtonActionPerformed
 
     private void CourseComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseComboBoxActionPerformed
-        // TODO add your handling code here:
-        CourseComboBox.addItem("Company Introduction");
-        CourseComboBox.addItem("Star C Programming");
+        // combo box list
+       CourseComboBox.addItem("Company Introduction");
+       CourseComboBox.addItem("Star C Programming");
        CourseComboBox.addItem("Star C++ Programming");
        CourseComboBox.addItem("Star HTML");
        CourseComboBox.addItem("Star PHP Developer");
@@ -1314,18 +1301,17 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_CourseComboBoxActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
-        // TODO add your handling code here:
+        // clear text felid
         FirstName.setText(null);
-         LastName.setText(null);
-          FatherName.setText(null);
-           Address.setText(null);
-            InstruteName.setText(null);
-             StudentNumber.setText(null);
-              AddharNumber.setText(null);
-               MailId.setText(null);
-               AgreeRadioBUtton.setSelected(false);
-                  
-        
+        LastName.setText(null);
+        FatherName.setText(null);
+        Address.setText(null);
+        InstruteName.setText(null);
+        StudentNumber.setText(null);
+        AddharNumber.setText(null);
+        MailId.setText(null);
+        AgreeRadioBUtton.setSelected(false);
+              
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void AgreeRadioBUttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreeRadioBUttonActionPerformed
@@ -1334,66 +1320,64 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_AgreeRadioBUttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        // Back to previous page
         OptionForm optionform=new OptionForm();
         optionform.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void FatherNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatherNameActionPerformed
-        // TODO add your handling code here:
-         
+      
     }//GEN-LAST:event_FatherNameActionPerformed
 
     private void ContactNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactNumberActionPerformed
-        // TODO add your handling code here:
-       
+      
     }//GEN-LAST:event_ContactNumberActionPerformed
 
     private void UnEmployeeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnEmployeeRadioButtonActionPerformed
-        // TODO add your handling code here:
-          if( UnEmployeeRadioButton.isSelected()){
+        // when one radio button is selecte is set off the another
+        if( UnEmployeeRadioButton.isSelected()){
             CollegeRadioButton.setSelected(false);
-           SchoolRadioButton.setSelected(false);
-           EmployeeRadioButton.setSelected(false);
+            SchoolRadioButton.setSelected(false);
+            EmployeeRadioButton.setSelected(false);
             OtherEducationRadioButton.setSelected(false);
-                InstituteLabel.setVisible(false);
-       InstruteName.setVisible(false);
-       yearLabel.setVisible(false);
-               YearComboBox.setVisible(false);
-               acaLabel.setVisible(false);
-                       AcademyBackgroundComboBox.setVisible(false);
-                       groupLabel.setVisible(false);
-                               GetGroup.setVisible(false);
+            InstituteLabel.setVisible(false);
+            InstruteName.setVisible(false);
+            yearLabel.setVisible(false);
+            YearComboBox.setVisible(false);
+            acaLabel.setVisible(false);
+            AcademyBackgroundComboBox.setVisible(false);
+            groupLabel.setVisible(false);
+            GetGroup.setVisible(false);
         }
              
     }//GEN-LAST:event_UnEmployeeRadioButtonActionPerformed
 
     private void YearComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YearComboBoxActionPerformed
-        // TODO add your handling code here:
+        //combo box list
        
          YearComboBox.addItem("1 Std");
-          YearComboBox.addItem("2 Std");
-           YearComboBox.addItem("3 Std");
-            YearComboBox.addItem("4 Std");
-             YearComboBox.addItem("5 Std"); 
-             YearComboBox.addItem("6 Std");
-              YearComboBox.addItem("7 Std");
-               YearComboBox.addItem("8 Std");
-                YearComboBox.addItem("9 Std");
-                 YearComboBox.addItem("10 Std");
-                  YearComboBox.addItem("11 Std");
-                   YearComboBox.addItem("12 Std");
-                   YearComboBox.addItem("1st year");
-                    YearComboBox.addItem("2nd year");
-                     YearComboBox.addItem("3rd year");
-                     YearComboBox.addItem("4th year");
-                      YearComboBox.setVisible(true);
-                      
-                       Year= YearComboBox.getSelectedItem().toString();
+         YearComboBox.addItem("2 Std");
+         YearComboBox.addItem("3 Std");
+         YearComboBox.addItem("4 Std");
+         YearComboBox.addItem("5 Std"); 
+         YearComboBox.addItem("6 Std");
+         YearComboBox.addItem("7 Std");
+         YearComboBox.addItem("8 Std");
+         YearComboBox.addItem("9 Std");
+         YearComboBox.addItem("10 Std");
+         YearComboBox.addItem("11 Std");
+         YearComboBox.addItem("12 Std");
+         YearComboBox.addItem("1st year");
+         YearComboBox.addItem("2nd year");
+         YearComboBox.addItem("3rd year");
+         YearComboBox.addItem("4th year");
+         YearComboBox.setVisible(true);
+         
+         Year= YearComboBox.getSelectedItem().toString();
     }//GEN-LAST:event_YearComboBoxActionPerformed
 
     private void AcademyBackgroundComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcademyBackgroundComboBoxActionPerformed
-        // TODO add your handling code here:
+        ///combo box list
         AcademyBackgroundComboBox.addItem("State board");
         AcademyBackgroundComboBox.addItem("CBSE");
         AcademyBackgroundComboBox.addItem("ICSE");
@@ -1448,7 +1432,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_AmountPaidActionPerformed
 
     private void SingelpayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SingelpayRadioButtonActionPerformed
-        // TODO add your handling code here:
+         // when one radio button is selecte is set off the another
          if(SingelpayRadioButton.isSelected()){
            DoublepayRadioButton.setSelected(false);
            
@@ -1457,7 +1441,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_SingelpayRadioButtonActionPerformed
 
     private void DoublepayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoublepayRadioButtonActionPerformed
-        // TODO add your handling code here:
+        // when one radio button is selecte is set off the another
         if(DoublepayRadioButton.isSelected()){
            SingelpayRadioButton.setSelected(false);
         }
@@ -1471,50 +1455,49 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
     private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
         // Calculation for the fees
-          Coursefees=Long.valueOf(CourseFees.getText());
+        Coursefees=Long.valueOf(CourseFees.getText());
         Gst=Integer.valueOf(GST.getText());
-          Amountpaid=Long.valueOf(AmountPaid.getText());
+        Amountpaid=Long.valueOf(AmountPaid.getText());
         
         long Gstamount=Coursefees*Gst/100;
         totalcoursefees=(int) (Coursefees+Gstamount);
         Balanceamount=totalcoursefees-Amountpaid;
         ShowBill.setText("                             My First Step Computer Skill"
-                        +"\n Course Fees                                                         "+String.valueOf(Coursefees)
-                        +"\n GST%                                        "+Gst+"%                  "+String.valueOf(Gstamount)
-                        +"\n Total Course Fees                                                "+String.valueOf(totalcoursefees)
-                        +"\n Fess Paid                                                            "+String.valueOf(Amountpaid)
-                        +"\n Balance to pay                                                     "+String.valueOf(Balanceamount));
+                        +"\n Course Fees                                                           "+String.valueOf(Coursefees)
+                        +"\n GST%                                          "+Gst+"%                  "+String.valueOf(Gstamount)
+                        +"\n Total Course Fees                                                  "+String.valueOf(totalcoursefees)
+                        +"\n Fess Paid                                                              "+String.valueOf(Amountpaid)
+                        +"\n Balance to pay                                                       "+String.valueOf(Balanceamount));
     }//GEN-LAST:event_CalculateActionPerformed
-private void Administrationnumber(){
+
+    //adminsition number fech form the cdatabase
+    private void Administrationnumber(){
         int Administrationnumber ;
-         try{
-                   String sql= "SELECT COUNT(Firstname) FROM Registrationtable";
-                   pst =con.prepareStatement(sql);
-                   rs= pst.executeQuery();
-                   
-                  
-                     
-                   if(rs.next()){
-                     Administrationnumber =rs.getInt("COUNT(Firstname)");
-                       administrationnumber=Administrationnumber + 1000; 
-                   }
-                         
-                        System.out.println("1");
-          
-                 
+        try{
+            String sql= "SELECT COUNT(Firstname) FROM Registrationtable";
+            pst =con.prepareStatement(sql);
+            rs= pst.executeQuery();
+                
+            if(rs.next()){
+                Administrationnumber =rs.getInt("COUNT(Firstname)");
+                administrationnumber=Administrationnumber + 1000; 
+            }
             
-             }catch(Exception e){
-                 System.out.println("2"+e);
-             }finally{
-                 try{
+            System.out.println("Load the Adminstraton number");
+          
+        }catch(Exception e){
+            
+            System.out.println("Faild to load the adminstration number"+e);
+            
+            }finally{
+                try{
+                    pst.close();
+                    System.out.println("successfully closed the database");
                     
-                     pst.close();
-                     System.out.println("3");
-                 }catch(Exception e){
-                     System.out.println("4"+e);
+                }catch(Exception e){
+                    System.out.println("4"+e);
                  }
              }
-        
     }   
 
     public static void main(String args[]) {
@@ -1607,7 +1590,6 @@ private void Administrationnumber(){
     private javax.swing.JPanel c;
     private javax.swing.JLabel groupLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

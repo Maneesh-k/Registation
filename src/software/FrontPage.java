@@ -13,7 +13,7 @@ import java.util.Date;
  *
  * @author ELCOT
  */
-public class FrontPage extends javax.swing.JFrame  implements Runnable {
+public class FrontPage extends javax.swing.JFrame  implements Runnable  {
 
     /**
      * Creates new form StartingPage
@@ -267,10 +267,8 @@ public class FrontPage extends javax.swing.JFrame  implements Runnable {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrontPage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FrontPage().setVisible(true);
         });
     }
 

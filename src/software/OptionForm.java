@@ -1,33 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//Package
 package software;
 
+//imports
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- *
- * @author ELCOT
- */
+
 public class OptionForm extends javax.swing.JFrame implements Runnable {
 
-    /**
-     * Creates new form OptionForm
-     * @param Username
-     */
-     int hour,minute,second;
-    Thread t=new Thread(this);
+    //created thread for Clock
+    int hour,minute,second;
+    Thread Oclock=new Thread(this);
    
     public OptionForm(){
         
      
           initComponents();
           Showdate.setText(String.valueOf(java.time.LocalDate.now()));
-          t.start();
+          Oclock.start();
     }
    
     @Override
@@ -266,28 +257,28 @@ public class OptionForm extends javax.swing.JFrame implements Runnable {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       t.stop();
+        Oclock.stop();
         Registration registration=new Registration();
         registration.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-       t.stop();
+        Oclock.stop();
         FrontPage frontpage=new FrontPage();
         frontpage.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void BillingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BillingButtonActionPerformed
         // TODO add your handling code here:
-        t.stop();
+        Oclock.stop();
         Billing bill=new Billing();
         bill.setVisible(true);
     }//GEN-LAST:event_BillingButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        t.stop();
+        Oclock.stop();
         StudentDataView studentdataview=new StudentDataView();
         studentdataview.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -333,10 +324,8 @@ public class OptionForm extends javax.swing.JFrame implements Runnable {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new OptionForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new OptionForm().setVisible(true);
         });
     }
  
