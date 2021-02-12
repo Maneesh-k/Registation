@@ -28,10 +28,10 @@ public class EnquiryForm extends javax.swing.JFrame {
     static String Course;
     static String address;
     static String Religion;
-    static String Year=null;
+    static String Year;
     static String AcademyBackground;
     static String Gender;
-    static String Institute=null;
+    static String Institute;
     static String Dob;
     static String PG;
     static String Group;
@@ -40,7 +40,7 @@ public class EnquiryForm extends javax.swing.JFrame {
     static String dateTime;
     static long administrationnumber;
     static String aboutMyfs;
-    static String Referncename=null;
+    static String Referncename;
     
     //for date
     SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
@@ -62,13 +62,13 @@ public class EnquiryForm extends javax.swing.JFrame {
         initComponents();
         
         //calling class
-        Administrationnumber();
+        AdministionNumberCount administionnumbercount=new AdministionNumberCount(); 
+        administrationnumber= administionnumbercount.Return();
         ShowAdminstration.setText(String.valueOf(administrationnumber));
         
         //Declare jcompponet to be visible false
         referenceName.setVisible(false);
         ReferenceName.setVisible(false);
-        con=ConnectionDb.DbConnection();
         CourseComboBox.setSelectedItem(null);
         AcademyBackgroundComboBox.setSelectedItem(null);
         InstituteLabel.setVisible(false);
@@ -326,11 +326,6 @@ public class EnquiryForm extends javax.swing.JFrame {
         jLabel3.setText("Date Of Birth");
 
         InstruteName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        InstruteName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InstruteNameActionPerformed(evt);
-            }
-        });
 
         InstituteLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         InstituteLabel.setText("Institute Name");
@@ -504,7 +499,7 @@ public class EnquiryForm extends javax.swing.JFrame {
 
         CourseComboBox.setEditable(true);
         CourseComboBox.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        CourseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Company Introduction", "Star C Programming", "Star C++ Programming", "Star HTML", "Star PHP Developer", "Star Python", "Star Android", "Star Big Data Programming", "Star Big Data Analytics", "Star Cloud Computing", "Star Cyber Secure User", "Ethical Hacking Expert", "Star Forensic Investigator Computer Hacking - 007", "Star Secure Programmer Expert - Android", "Star Secure Programmer Expert - Java", "Star Secure Programmer Expert - PHP", "Star Secure Programmer Expert - NET", "Star Mobile Forensic Advance Security", "Star Security Cyber Analytics", "Star Network Security Administrator Expert", "Star Incident Handler Expert - SIHE", "Star Penetration Testing Expert", "Star Expert Security Specialist", "Star Certified Software Testing", "Star Expert loT Specialist (SEIS)", "Star Digital Marketing Expert (SDME)", "Star Certified DevOps Expert", "Star Expert Blockchain Specialist" }));
+        CourseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tally", "Tally Prime", "Oracle", "MS Office", "C & C++ Programming", "C Programming", "C++ Programming", "HTML", "PHP Developer", "Python", "Android", "Big Data Programming", "Big Data Analytics", "Cloud Computing", "Cyber Secure User", "Hacking Expert", "Forensic Investigator Computer Hacking - 007", "Secure Programmer Expert - Android", "Secure Programmer Expert - PHP", "Secure Programmer Expert - Java", "Secure Programmer Expert - .NET", "Mobile Forensic Advance Security", "Security Cyber Analytics", "Network Security Administrator Expert", "Incident Handler Expert - SIHE", "Penetration Testing Expert", "Expert Security Specialist", "Certified Software Testing", "Expert loT Specialist (SEIS)", "Digital Marketing Expert (SDME)", "Certified DevOps Expert", "Expert Blockchain Specialist", "DIPLOMA IN COMPUTER APPLICATION (DCA)", "HONORS DIPLOMA IN COMPUTER APPLICATION (HDCA)", "MASTER DIPLOMA IN COMPUTER APPLICATION (MDCA)", "HONORS DIPLOMA IN MULTIMEDIA PROGRAMMING (HDMP)", "MULTIMEDIA PROGRAMMING", "AUTO CADD", "SPOKEN ENGLISH", "SPOKEN ENGLISH- Level 1", "SPOKEN ENGLISH- Level 2", "SPOKEN ENGLISH- Level 3", "SPOKEN ENGLISH- Corporate Training", "DIPLOMA IN HARDWARE  NETWORK  (DHN)" }));
         CourseComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CourseComboBoxActionPerformed(evt);
@@ -857,56 +852,47 @@ public class EnquiryForm extends javax.swing.JFrame {
         Lastname=LastName.getText();
         Fathername=FatherName.getText();
         Mothername=MotherName.getText();
-        Instrutename=InstruteName.getText();
+        
         Studentnumber=StudentNumber.getText();
         Contactnumber=ContactNumber.getText();
 
         Mailid=MailId.getText().toLowerCase();
-        Course=CourseComboBox.getSelectedItem().toString();
+     Course=CourseComboBox.getSelectedItem().toString();
 
-        AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
         Religion=GetReligion.getText();
 
         PG=PGName.getText();
-        Group=GetGroup.getText();
+       
         dateTime=formatter.format(date);
         address=Address.getText();
 
-        Referncename=ReferenceName.getText();
-        if(OnlineRadioButton.isSelected()){
-            Referncename=null;
-        }
-        if(AdvertisementRadioButton.isSelected()){
-            Referncename=null;
-        }
-        if(PamphletRadioButton.isSelected()){
-            Referncename=null;
-        }
-        if(OtherEduRadioButton.isSelected()){
-            Referncename=null;
-        }
-        if(NoneRadioButton.isSelected()){
-            Referncename=null;
-        }
+       
+      
 
         aboutMyfs=null;
         if(OnlineRadioButton.isSelected()){
-            aboutMyfs="Online";
+            aboutMyfs="online";
+             Referncename=null;
         }
         if(AdvertisementRadioButton.isSelected()){
-            aboutMyfs="Advertisement";
+            aboutMyfs="advertisement";
+             Referncename=null;
         }
         if(FriendsRadioButton.isSelected()){
-            aboutMyfs="Friends";
+            aboutMyfs="friends";
+             Referncename=ReferenceName.getText();
         }
         if(PamphletRadioButton.isSelected()){
-            aboutMyfs="Pamphlet";
+            aboutMyfs="pamphlet";
+             Referncename=null;
         }
         if(OtherEduRadioButton.isSelected()){
-            aboutMyfs="Other";
+            aboutMyfs="other";
+             Referncename=null;
         }
         if(NoneRadioButton.isSelected()){
             aboutMyfs="none";
+             Referncename=null;
         }
 
         StudentWa=null;
@@ -931,17 +917,40 @@ public class EnquiryForm extends javax.swing.JFrame {
             Gender="Other";
         }
 
+      
+        
         Institute =null;
         if(SchoolRadioButton.isSelected()){
             Institute ="School";
+            Instrutename=InstruteName.getText();
+        AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
+         Group=GetGroup.getText();
+          Year=YearComboBox.getSelectedItem().toString();
+         
         }if(CollegeRadioButton.isSelected()){
             Institute ="College";
+            Instrutename=InstruteName.getText();
+        AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
+        Year=YearComboBox.getSelectedItem().toString();
+         Group=GetGroup.getText();
         }if(OtherEducationRadioButton.isSelected()){
             Institute ="Other";
+             Year=null;
+            AcademyBackground=null;
+            Institute=null;
+           
         }if(EmployeeRadioButton.isSelected()){
             Institute ="Employee";
+             Year=null;
+            AcademyBackground=null;
+            Institute=null;
+           
         }if(UnEmployeeRadioButton.isSelected()){
             Institute="UnEmployee";
+             Year=null;
+            AcademyBackground=null;
+            Institute=null;
+           
         }
 
         try{
@@ -970,7 +979,7 @@ public class EnquiryForm extends javax.swing.JFrame {
             pst.setString(20,aboutMyfs);   //20
             pst.setString(21, Referncename);   //21
 
-            JOptionPane.showMessageDialog(this,"Saved,");
+            JOptionPane.showMessageDialog(this,"Saved");
             pst.execute();
 
             System.out.println("Saved student data Successfully");
@@ -1122,36 +1131,46 @@ public class EnquiryForm extends javax.swing.JFrame {
 
     private void CourseComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseComboBoxActionPerformed
         // TODO add your handling code here:
-        CourseComboBox.addItem("Company Introduction");
-        CourseComboBox.addItem("Star C Programming");
-        CourseComboBox.addItem("Star C++ Programming");
-        CourseComboBox.addItem("Star HTML");
-        CourseComboBox.addItem("Star PHP Developer");
-        CourseComboBox.addItem(";Star Python");
-        CourseComboBox.addItem("Star Android");
-        CourseComboBox.addItem("Star Big Data Programming");
-        CourseComboBox.addItem("Star Big Data Analytics");
-        CourseComboBox.addItem("Star Cloud Computing");
-        CourseComboBox.addItem("Star Cyber Secure User");
-        CourseComboBox.addItem("Ethical Hacking Expert");
-        CourseComboBox.addItem("star Forensic Investigator Computer Hacking - 007");
-        CourseComboBox.addItem("Star Secure Programmer Expert - Android");
-        CourseComboBox.addItem("Star Secure Programmer Expert - PHP");
-        CourseComboBox.addItem("Star Secure Programmer Expert - Java");
-        CourseComboBox.addItem(" Star Secure Programmer Expert - NET");
-        CourseComboBox.addItem("Star Mobile Forensic Advance Security");
-        CourseComboBox.addItem("Star Security Cyber Analytics");
-        CourseComboBox.addItem("Star Network Security Administrator Expert");
-        CourseComboBox.addItem("Star Incident Handler Expert - SIHE");
-        CourseComboBox.addItem("Star Penetration Testing Expert");
-        CourseComboBox.addItem("Star Expert Security Specialist");
-        CourseComboBox.addItem("Star Certified Software Testing");
-        CourseComboBox.addItem("Star Expert loT Specialist (SEIS)");
-        CourseComboBox.addItem("Star Digital Marketing Expert (SDME)");
-        CourseComboBox.addItem("Star Certified DevOps Expert");
-        CourseComboBox.addItem("Star Expert Blockchain Specialist");
-        CourseComboBox.setVisible(true);
-        CourseComboBox.setEditable(true);
+         CourseComboBox.addItem("Tally");
+         CourseComboBox.addItem("Tally Prime");
+         CourseComboBox.addItem("Oracle");
+         CourseComboBox.addItem("MS Office");
+         CourseComboBox.addItem("C & C++ Programming");
+         CourseComboBox.addItem("C Programming");
+         CourseComboBox.addItem("C++ Programming");
+         CourseComboBox.addItem("HTML");
+         CourseComboBox.addItem("PHP Developer");
+         CourseComboBox.addItem("Python");
+         CourseComboBox.addItem("Android");
+         CourseComboBox.addItem("Big Data Analytics");
+         CourseComboBox.addItem("Forensic Investigator Computer Hacking - 007");
+         CourseComboBox.addItem("Secure Programmer Expert - Android");
+         CourseComboBox.addItem("Secure Programmer Expert - PHP");
+         CourseComboBox.addItem("Secure Programmer Expert - Java");
+         CourseComboBox.addItem("Secure Programmer Expert - .NET");
+         CourseComboBox.addItem("Mobile Forensic Advance Security");
+         CourseComboBox.addItem("Security Cyber Analytics");
+         CourseComboBox.addItem("Network Security Administrator Expert");
+         CourseComboBox.addItem("Incident Handler Expert - SIHE");
+         CourseComboBox.addItem("Penetration Testing Expert");
+         CourseComboBox.addItem("Expert Security Specialist");
+         CourseComboBox.addItem("Certified Software Testing");
+         CourseComboBox.addItem("Digital Marketing Expert (SDME)");
+         CourseComboBox.addItem("Certified DevOps Expert");
+         CourseComboBox.addItem("Expert Blockchain Specialist");
+         CourseComboBox.addItem("DIPLOMA IN COMPUTER APPLICATION (DCA)");
+         CourseComboBox.addItem("HONORS DIPLOMA IN COMPUTER APPLICATION (HDCA)");
+         CourseComboBox.addItem("MASTER DIPLOMA IN COMPUTER APPLICATION (MDCA)");
+         CourseComboBox.addItem("HONORS DIPLOMA IN MULTIMEDIA PROGRAMMING (HDMP)");
+         CourseComboBox.addItem("MULTIMEDIA PROGRAMMING");
+         CourseComboBox.addItem("AUTO CADD");
+         CourseComboBox.addItem("SPOKEN ENGLISH");
+         CourseComboBox.addItem("SPOKEN ENGLISH- Level 1");
+         CourseComboBox.addItem("SPOKEN ENGLISH- Level 2");
+         CourseComboBox.addItem("SPOKEN ENGLISH- Corporate Training");
+         CourseComboBox.addItem("DIPLOMA IN HARDWARE  NETWORK  (DHN)");
+         CourseComboBox.setVisible(true);
+         CourseComboBox.setEditable(true);
     }//GEN-LAST:event_CourseComboBoxActionPerformed
 
     private void AcademyBackgroundComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcademyBackgroundComboBoxActionPerformed
@@ -1191,10 +1210,6 @@ public class EnquiryForm extends javax.swing.JFrame {
         YearComboBox.addItem("4th year");
         YearComboBox.setVisible(true);
     }//GEN-LAST:event_YearComboBoxActionPerformed
-
-    private void InstruteNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstruteNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InstruteNameActionPerformed
 
     private void OtherEducationRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtherEducationRadioButtonActionPerformed
         // TODO add your handling code here:
@@ -1334,41 +1349,7 @@ public class EnquiryForm extends javax.swing.JFrame {
         optionform.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
-  /*  private void Administrationnumber(){
-        int Administrationnumber ;
-         try{
-                   String sql= "SELECT MAX() FROM Registrationtable";
-                   pst =con.prepareStatement(sql);
-                   rs= pst.executeQuery();
-                   
-                  
-                     
-                   if(rs.next()){
-                     Administrationnumber =rs.getInt("COUNT");
-                       administrationnumber=10000+Administrationnumber;
-                   }
-                         
-                        System.out.println("Successfully count the administration number");
-          
-                 
-            
-             }catch(SQLException e){
-                 System.out.println("Fail to count the  administration number"+e);
-             }finally{
-                 try{
-                    
-                     pst.close();
-                     System.out.println("Successfully close the data base");
-                 }catch(SQLException e){
-                     System.out.println("Fail to  cllose the data base"+e);
-                 }
-             }
-        
-    }
-    
-     * @param args the command line arguments
-     */
+  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -8,6 +8,7 @@ package software;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,14 +58,14 @@ public class Billing extends javax.swing.JFrame implements Runnable {
                    
             
                     System.out.println("1");
-            }catch(Exception e){
+            }catch(SQLException e){
                  System.out.println("2"+e);
              }finally{
                  try{
                     
                      pst.close();
                      System.out.println("3");
-                 }catch(Exception e){
+                 }catch(SQLException e){
                      System.out.println("4"+e);
                  }
              }
@@ -233,6 +234,7 @@ public class Billing extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        balance.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         balance.setText("Balance");
 
         ShowBalance.setEditable(false);
@@ -262,7 +264,7 @@ public class Billing extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel3)
                     .addComponent(AmountPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(PayOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(balance)
                     .addComponent(ShowBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -431,16 +433,16 @@ public class Billing extends javax.swing.JFrame implements Runnable {
 
               
             pst.executeUpdate();
-            System.out.println("1");
+            System.out.println("Successfully update the data");
             }catch(Exception e){
-                System.out.println("2"+e);
+                System.out.println("Fail update the data"+e);
              }finally{
                 try{
                     
                     pst.close();
-                    System.out.println("3");
+                    System.out.println("Successfully closed database");
                 }catch(Exception e){
-                    System.out.println("4"+e);
+                    System.out.println("Fail to lose database"+e);
                 }
             }
      

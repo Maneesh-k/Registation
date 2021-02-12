@@ -313,7 +313,7 @@
                           <Component id="AmountPaid" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="SaveButton" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="balance" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ShowBalance" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -355,6 +355,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="balance">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Balance"/>
               </Properties>
             </Component>

@@ -65,18 +65,6 @@
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="c" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jPanel56" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="PaymentPanel" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="119" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
                               <Component id="jButton1" min="-2" pref="126" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -86,20 +74,36 @@
                                       <Component id="Showdate" min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" pref="621" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="c" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="NextButton" min="-2" pref="135" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
+                                              <Component id="ClearButton" min="-2" pref="135" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="CoursePanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jPanel56" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="PaymentPanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane2" alignment="1" min="-2" pref="1142" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane3" alignment="1" min="-2" pref="1142" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="NextButton" min="-2" pref="135" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
-                      <Component id="ClearButton" min="-2" pref="135" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="325" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -113,34 +117,34 @@
                                   <Component id="ShowTime" alignment="0" max="32767" attributes="0"/>
                                   <Component id="Showdate" alignment="0" pref="32" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jButton1" min="-2" pref="44" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="c" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="CoursePanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jPanel56" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="PaymentPanel" min="-2" pref="194" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="PaymentPanel" min="-2" pref="194" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="165" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ClearButton" max="32767" attributes="0"/>
-                          <Component id="NextButton" pref="53" max="32767" attributes="0"/>
+                      <EmptySpace pref="77" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="NextButton" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                          <Component id="ClearButton" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -198,7 +202,7 @@
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="AcademyBackgroundComboBox" pref="186" max="32767" attributes="0"/>
+                                                  <Component id="AcademyBackgroundComboBox" max="32767" attributes="0"/>
                                                   <Component id="FemaleRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="MaleRadioButton" min="-2" max="-2" attributes="0"/>
@@ -350,9 +354,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstNameActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
@@ -372,6 +373,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="MaleRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -383,6 +387,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="FemaleRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -398,9 +405,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FatherNameActionPerformed"/>
-                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
@@ -415,6 +419,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="SchoolRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -426,6 +433,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="CollegeRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -449,12 +459,12 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LastNameActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="OtherGenderRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -466,6 +476,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="EmployeeRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -477,6 +490,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="UnEmployeeRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -488,6 +504,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="OtherEducationRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -511,9 +530,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InstruteNameActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="InstituteLabel">
                   <Properties>
@@ -602,9 +618,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GetReligionActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="AcademyBackgroundComboBox">
                   <Properties>
@@ -652,7 +665,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel4">
+            <Container class="javax.swing.JPanel" name="CoursePanel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="99" red="33" type="rgb"/>
@@ -663,11 +676,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
                           <Component id="CourseComboBox" min="-2" pref="345" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="600" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -700,35 +713,51 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="28">
-                        <StringItem index="0" value="Company Introduction"/>
-                        <StringItem index="1" value="Star C Programming"/>
-                        <StringItem index="2" value="Star C++ Programming"/>
-                        <StringItem index="3" value="Star HTML"/>
-                        <StringItem index="4" value="Star PHP Developer"/>
-                        <StringItem index="5" value="Star Python"/>
-                        <StringItem index="6" value="Star Android"/>
-                        <StringItem index="7" value="Star Big Data Programming"/>
-                        <StringItem index="8" value="Star Big Data Analytics"/>
-                        <StringItem index="9" value="Star Cloud Computing"/>
-                        <StringItem index="10" value="Star Cyber Secure User"/>
-                        <StringItem index="11" value="Ethical Hacking Expert"/>
-                        <StringItem index="12" value="Star Forensic Investigator Computer Hacking - 007"/>
-                        <StringItem index="13" value="Star Secure Programmer Expert - Android"/>
-                        <StringItem index="14" value="Star Secure Programmer Expert - Java"/>
-                        <StringItem index="15" value="Star Secure Programmer Expert - PHP"/>
-                        <StringItem index="16" value="Star Secure Programmer Expert - NET"/>
-                        <StringItem index="17" value="Star Mobile Forensic Advance Security"/>
-                        <StringItem index="18" value="Star Security Cyber Analytics"/>
-                        <StringItem index="19" value="Star Network Security Administrator Expert"/>
-                        <StringItem index="20" value="Star Incident Handler Expert - SIHE"/>
-                        <StringItem index="21" value="Star Penetration Testing Expert"/>
-                        <StringItem index="22" value="Star Expert Security Specialist"/>
-                        <StringItem index="23" value="Star Certified Software Testing"/>
-                        <StringItem index="24" value="Star Expert loT Specialist (SEIS)"/>
-                        <StringItem index="25" value="Star Digital Marketing Expert (SDME)"/>
-                        <StringItem index="26" value="Star Certified DevOps Expert"/>
-                        <StringItem index="27" value="Star Expert Blockchain Specialist"/>
+                      <StringArray count="44">
+                        <StringItem index="0" value="Tally"/>
+                        <StringItem index="1" value="Tally Prime"/>
+                        <StringItem index="2" value="Oracle"/>
+                        <StringItem index="3" value="MS Office"/>
+                        <StringItem index="4" value="C &amp; C++ Programming"/>
+                        <StringItem index="5" value="C Programming"/>
+                        <StringItem index="6" value="C++ Programming"/>
+                        <StringItem index="7" value="HTML"/>
+                        <StringItem index="8" value="PHP Developer"/>
+                        <StringItem index="9" value="Python"/>
+                        <StringItem index="10" value="Android"/>
+                        <StringItem index="11" value="Big Data Programming"/>
+                        <StringItem index="12" value="Big Data Analytics"/>
+                        <StringItem index="13" value="Cloud Computing"/>
+                        <StringItem index="14" value="Cyber Secure User"/>
+                        <StringItem index="15" value="Hacking Expert"/>
+                        <StringItem index="16" value="Forensic Investigator Computer Hacking - 007"/>
+                        <StringItem index="17" value="Secure Programmer Expert - Android"/>
+                        <StringItem index="18" value="Secure Programmer Expert - PHP"/>
+                        <StringItem index="19" value="Secure Programmer Expert - Java"/>
+                        <StringItem index="20" value="Secure Programmer Expert - .NET"/>
+                        <StringItem index="21" value="Mobile Forensic Advance Security"/>
+                        <StringItem index="22" value="Security Cyber Analytics"/>
+                        <StringItem index="23" value="Network Security Administrator Expert"/>
+                        <StringItem index="24" value="Incident Handler Expert - SIHE"/>
+                        <StringItem index="25" value="Penetration Testing Expert"/>
+                        <StringItem index="26" value="Expert Security Specialist"/>
+                        <StringItem index="27" value="Certified Software Testing"/>
+                        <StringItem index="28" value="Expert loT Specialist (SEIS)"/>
+                        <StringItem index="29" value="Digital Marketing Expert (SDME)"/>
+                        <StringItem index="30" value="Certified DevOps Expert"/>
+                        <StringItem index="31" value="Expert Blockchain Specialist"/>
+                        <StringItem index="32" value="DIPLOMA IN COMPUTER APPLICATION (DCA)"/>
+                        <StringItem index="33" value="HONORS DIPLOMA IN COMPUTER APPLICATION (HDCA)"/>
+                        <StringItem index="34" value="MASTER DIPLOMA IN COMPUTER APPLICATION (MDCA)"/>
+                        <StringItem index="35" value="HONORS DIPLOMA IN MULTIMEDIA PROGRAMMING (HDMP)"/>
+                        <StringItem index="36" value="MULTIMEDIA PROGRAMMING"/>
+                        <StringItem index="37" value="AUTO CADD"/>
+                        <StringItem index="38" value="SPOKEN ENGLISH"/>
+                        <StringItem index="39" value="SPOKEN ENGLISH- Level 1"/>
+                        <StringItem index="40" value="SPOKEN ENGLISH- Level 2"/>
+                        <StringItem index="41" value="SPOKEN ENGLISH- Level 3"/>
+                        <StringItem index="42" value="SPOKEN ENGLISH- Corporate Training"/>
+                        <StringItem index="43" value="DIPLOMA IN HARDWARE  NETWORK  (DHN)"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -789,7 +818,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="259" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -862,9 +891,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddressActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
@@ -880,9 +906,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StudentNumberActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
@@ -906,9 +929,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddharNumberActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="MailId">
                   <Properties>
@@ -916,9 +936,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MailIdActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
                   <Properties>
@@ -952,17 +969,20 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ContactNumberActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="ParentwaCheckBox">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Whatsapp Number"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="StudentwaCheckBox">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Whatsapp Number"/>
                   </Properties>
                 </Component>
@@ -986,14 +1006,12 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="AgreeRadioBUtton" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="AgreeRadioBUtton" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="314" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1004,16 +1022,12 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" pref="14" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="AgreeRadioBUtton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="42" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1021,41 +1035,31 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel13">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="By checking &apos;l Agree&apos; below and submitting this form, you, the Parent or Guardian of the above student(s), agree to release "/>
+                        <Property name="text" type="java.lang.String" value="By checking &apos;l Agree&apos; below and submitting this form, you, the Parent or Guardian of the above student(s), agree to release  &quot;Studio Name Here&quot;, including instructors and assistants from "/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel14">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value=" &quot;Studio Name Here&quot;, including instructors and assistants from liability for any and all injuries which occur while training,"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel15">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value=" practicing, performing, or during any studio event or activity. You also agree that you are responsible for health and"/>
+                        <Property name="text" type="java.lang.String" value=" liability for any and all injuries which occur while training,  practicing, performing, or during any studio event or activity. You also agree that you are responsible for health and accident"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="accident insurance and any medical costs incurred due to injury. You give permission for emergency medical transportation "/>
+                        <Property name="text" type="java.lang.String" value="insurance and any medical costs incurred due to injury. You give permission for emergency medical transportation accident and treatment of your student(s) at your expense should  "/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel17">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="and treatment of your student(s) at your expense should the need arise. You also give your permission for "/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel18">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="the public display of any studio visual images that your child may appear in."/>
+                        <Property name="text" type="java.lang.String" value="the need arise. You also give your permission for the public display of any studio visual images that your child may appear in. "/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JCheckBox" name="AgreeRadioBUtton">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="99" red="33" type="rgb"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="agree terms and condition"/>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgreeRadioBUttonActionPerformed"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1132,7 +1136,7 @@
                               <Component id="GST" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
                               <Component id="Calculate" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="272" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1199,6 +1203,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="SingelpayRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -1210,6 +1217,9 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="DoublepayRadioButton">
                   <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="99" red="33" type="rgb"/>
+                    </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
@@ -1233,9 +1243,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CourseFeesActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel30">
                   <Properties>
@@ -1251,9 +1258,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AmountPaidActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel31">
                   <Properties>
@@ -1269,9 +1273,6 @@
                       <Font name="Times New Roman" size="18" style="0"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GSTActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="Calculate">
                   <Properties>

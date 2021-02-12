@@ -71,7 +71,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         Showdate.setText(String.valueOf(java.time.LocalDate.now()));
     
         //caling class
-        Administrationnumber();
+          AdministionNumberCount administionnumbercount=new AdministionNumberCount(); 
+        administrationnumber= administionnumbercount.Return();
         AdministrationNumber.setText(String.valueOf(administrationnumber));
      
         //declare the componet to be visible     
@@ -151,7 +152,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel34 = new javax.swing.JLabel();
         MotherName = new javax.swing.JTextField();
         DOB = new com.toedter.calendar.JDateChooser();
-        jPanel4 = new javax.swing.JPanel();
+        CoursePanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         CourseComboBox = new javax.swing.JComboBox<>();
         jPanel56 = new javax.swing.JPanel();
@@ -173,10 +174,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         AgreeRadioBUtton = new javax.swing.JCheckBox();
         NextButton = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
@@ -228,11 +227,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel2.setText("First Name");
 
         FirstName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        FirstName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FirstNameActionPerformed(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel19.setText("Father Name");
@@ -240,6 +234,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Gender");
 
+        MaleRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         MaleRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         MaleRadioButton.setText("Male");
         MaleRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -248,6 +243,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        FemaleRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         FemaleRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         FemaleRadioButton.setText("Female");
         FemaleRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -257,15 +253,11 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         });
 
         FatherName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        FatherName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FatherNameActionPerformed(evt);
-            }
-        });
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setText("Education");
 
+        SchoolRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         SchoolRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         SchoolRadioButton.setText("School");
         SchoolRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -274,6 +266,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        CollegeRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         CollegeRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         CollegeRadioButton.setText("College");
         CollegeRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -286,12 +279,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel5.setText("Last Name");
 
         LastName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        LastName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LastNameActionPerformed(evt);
-            }
-        });
 
+        OtherGenderRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         OtherGenderRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         OtherGenderRadioButton.setText("Other");
         OtherGenderRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -300,6 +289,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        EmployeeRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         EmployeeRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         EmployeeRadioButton.setText("Employee");
         EmployeeRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +298,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        UnEmployeeRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         UnEmployeeRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         UnEmployeeRadioButton.setText("UnEmployee");
         UnEmployeeRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -316,6 +307,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        OtherEducationRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         OtherEducationRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         OtherEducationRadioButton.setText("Other");
         OtherEducationRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -328,11 +320,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel3.setText("Date Of Birth");
 
         InstruteName.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        InstruteName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InstruteNameActionPerformed(evt);
-            }
-        });
 
         InstituteLabel.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         InstituteLabel.setText("Institute Name");
@@ -361,11 +348,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel23.setText("Religion");
 
         GetReligion.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        GetReligion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GetReligionActionPerformed(evt);
-            }
-        });
 
         AcademyBackgroundComboBox.setEditable(true);
         AcademyBackgroundComboBox.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -403,7 +385,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(AcademyBackgroundComboBox, 0, 186, Short.MAX_VALUE)
+                                        .addComponent(AcademyBackgroundComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(FemaleRadioButton, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addComponent(MaleRadioButton))
                                 .addGap(55, 55, 55))
@@ -505,36 +487,36 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        jPanel4.setBackground(new java.awt.Color(51, 153, 255));
+        CoursePanel.setBackground(new java.awt.Color(51, 153, 255));
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Course");
 
         CourseComboBox.setEditable(true);
         CourseComboBox.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        CourseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Company Introduction", "Star C Programming", "Star C++ Programming", "Star HTML", "Star PHP Developer", "Star Python", "Star Android", "Star Big Data Programming", "Star Big Data Analytics", "Star Cloud Computing", "Star Cyber Secure User", "Ethical Hacking Expert", "Star Forensic Investigator Computer Hacking - 007", "Star Secure Programmer Expert - Android", "Star Secure Programmer Expert - Java", "Star Secure Programmer Expert - PHP", "Star Secure Programmer Expert - NET", "Star Mobile Forensic Advance Security", "Star Security Cyber Analytics", "Star Network Security Administrator Expert", "Star Incident Handler Expert - SIHE", "Star Penetration Testing Expert", "Star Expert Security Specialist", "Star Certified Software Testing", "Star Expert loT Specialist (SEIS)", "Star Digital Marketing Expert (SDME)", "Star Certified DevOps Expert", "Star Expert Blockchain Specialist" }));
+        CourseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tally", "Tally Prime", "Oracle", "MS Office", "C & C++ Programming", "C Programming", "C++ Programming", "HTML", "PHP Developer", "Python", "Android", "Big Data Programming", "Big Data Analytics", "Cloud Computing", "Cyber Secure User", "Hacking Expert", "Forensic Investigator Computer Hacking - 007", "Secure Programmer Expert - Android", "Secure Programmer Expert - PHP", "Secure Programmer Expert - Java", "Secure Programmer Expert - .NET", "Mobile Forensic Advance Security", "Security Cyber Analytics", "Network Security Administrator Expert", "Incident Handler Expert - SIHE", "Penetration Testing Expert", "Expert Security Specialist", "Certified Software Testing", "Expert loT Specialist (SEIS)", "Digital Marketing Expert (SDME)", "Certified DevOps Expert", "Expert Blockchain Specialist", "DIPLOMA IN COMPUTER APPLICATION (DCA)", "HONORS DIPLOMA IN COMPUTER APPLICATION (HDCA)", "MASTER DIPLOMA IN COMPUTER APPLICATION (MDCA)", "HONORS DIPLOMA IN MULTIMEDIA PROGRAMMING (HDMP)", "MULTIMEDIA PROGRAMMING", "AUTO CADD", "SPOKEN ENGLISH", "SPOKEN ENGLISH- Level 1", "SPOKEN ENGLISH- Level 2", "SPOKEN ENGLISH- Level 3", "SPOKEN ENGLISH- Corporate Training", "DIPLOMA IN HARDWARE  NETWORK  (DHN)" }));
         CourseComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CourseComboBoxActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+        javax.swing.GroupLayout CoursePanelLayout = new javax.swing.GroupLayout(CoursePanel);
+        CoursePanel.setLayout(CoursePanelLayout);
+        CoursePanelLayout.setHorizontalGroup(
+            CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CoursePanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel7)
-                .addGap(136, 136, 136)
+                .addGap(121, 121, 121)
                 .addComponent(CourseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(600, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        CoursePanelLayout.setVerticalGroup(
+            CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CoursePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CourseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -546,21 +528,11 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel4.setText("Address");
 
         Address.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        Address.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddressActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel10.setText("Student Number");
 
         StudentNumber.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        StudentNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                StudentNumberActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel11.setText("Addhar Number");
@@ -569,18 +541,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel12.setText("Mail Id");
 
         AddharNumber.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        AddharNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddharNumberActionPerformed(evt);
-            }
-        });
 
         MailId.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        MailId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MailIdActionPerformed(evt);
-            }
-        });
 
         jLabel24.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel24.setText("Parent/Guardian Name");
@@ -592,14 +554,11 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel25.setText("Contact Number");
 
         ContactNumber.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        ContactNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContactNumberActionPerformed(evt);
-            }
-        });
 
+        ParentwaCheckBox.setBackground(new java.awt.Color(51, 153, 255));
         ParentwaCheckBox.setText("Whatsapp Number");
 
+        StudentwaCheckBox.setBackground(new java.awt.Color(51, 153, 255));
         StudentwaCheckBox.setText("Whatsapp Number");
 
         javax.swing.GroupLayout jPanel56Layout = new javax.swing.GroupLayout(jPanel56);
@@ -635,7 +594,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                             .addGroup(jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(MailId, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                                 .addComponent(ContactNumber)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(259, Short.MAX_VALUE))
         );
         jPanel56Layout.setVerticalGroup(
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -679,24 +638,16 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 255));
 
-        jLabel13.setText("By checking 'l Agree' below and submitting this form, you, the Parent or Guardian of the above student(s), agree to release ");
+        jLabel13.setText("By checking 'l Agree' below and submitting this form, you, the Parent or Guardian of the above student(s), agree to release  \"Studio Name Here\", including instructors and assistants from ");
 
-        jLabel14.setText(" \"Studio Name Here\", including instructors and assistants from liability for any and all injuries which occur while training,");
+        jLabel14.setText(" liability for any and all injuries which occur while training,  practicing, performing, or during any studio event or activity. You also agree that you are responsible for health and accident");
 
-        jLabel15.setText(" practicing, performing, or during any studio event or activity. You also agree that you are responsible for health and");
+        jLabel16.setText("insurance and any medical costs incurred due to injury. You give permission for emergency medical transportation accident and treatment of your student(s) at your expense should  ");
 
-        jLabel16.setText("accident insurance and any medical costs incurred due to injury. You give permission for emergency medical transportation ");
+        jLabel17.setText("the need arise. You also give your permission for the public display of any studio visual images that your child may appear in. ");
 
-        jLabel17.setText("and treatment of your student(s) at your expense should the need arise. You also give your permission for ");
-
-        jLabel18.setText("the public display of any studio visual images that your child may appear in.");
-
+        AgreeRadioBUtton.setBackground(new java.awt.Color(51, 153, 255));
         AgreeRadioBUtton.setText("agree terms and condition");
-        AgreeRadioBUtton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgreeRadioBUttonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -706,12 +657,10 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(AgreeRadioBUtton)
                     .addComponent(jLabel16)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                    .addComponent(AgreeRadioBUtton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -721,16 +670,12 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AgreeRadioBUtton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel2);
@@ -764,6 +709,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel28.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel28.setText("Payment Type");
 
+        SingelpayRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         SingelpayRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         SingelpayRadioButton.setText("Single Payment");
         SingelpayRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -772,6 +718,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        DoublepayRadioButton.setBackground(new java.awt.Color(51, 153, 255));
         DoublepayRadioButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         DoublepayRadioButton.setText("Double Payment");
         DoublepayRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -784,31 +731,16 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel29.setText("Course Fees");
 
         CourseFees.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        CourseFees.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CourseFeesActionPerformed(evt);
-            }
-        });
 
         jLabel30.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel30.setText("Amount Paid");
 
         AmountPaid.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        AmountPaid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AmountPaidActionPerformed(evt);
-            }
-        });
 
         jLabel31.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel31.setText("GST");
 
         GST.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        GST.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GSTActionPerformed(evt);
-            }
-        });
 
         Calculate.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         Calculate.setText("Calculate");
@@ -848,7 +780,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                     .addComponent(SingelpayRadioButton)
                     .addComponent(GST, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Calculate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         PaymentPanelLayout.setVerticalGroup(
             PaymentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -931,16 +863,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(c, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel56, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(PaymentPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(119, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -949,15 +871,27 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                                 .addGap(18, 18, 18)
                                 .addComponent(Showdate, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
+                                .addGap(95, 95, 95)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(266, 266, 266)
-                .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(325, 325, 325))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(c, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(252, 252, 252)
+                                        .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(292, 292, 292))
+                                    .addComponent(CoursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PaymentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(88, 88, 88))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -968,30 +902,30 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(ShowTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(Showdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel1))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)))
-                .addGap(39, 39, 39)
+                        .addGap(125, 125, 125)))
                 .addComponent(c, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(CoursePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(PaymentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addComponent(PaymentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ClearButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NextButton, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -1018,11 +952,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         }
     }//GEN-LAST:event_MaleRadioButtonActionPerformed
        
-    private void MailIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MailIdActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_MailIdActionPerformed
-
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         //Save the Student data in sqlite database
        if(!AgreeRadioBUtton.isSelected()){
@@ -1166,11 +1095,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     }          
     }//GEN-LAST:event_NextButtonActionPerformed
 
-    private void FirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstNameActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_FirstNameActionPerformed
-
     private void FemaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleRadioButtonActionPerformed
         // when one radio button is selecte is set off the another
            
@@ -1265,37 +1189,53 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
     private void CourseComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseComboBoxActionPerformed
         // combo box list
-       CourseComboBox.addItem("Company Introduction");
-       CourseComboBox.addItem("Star C Programming");
-       CourseComboBox.addItem("Star C++ Programming");
-       CourseComboBox.addItem("Star HTML");
-       CourseComboBox.addItem("Star PHP Developer");
-       CourseComboBox.addItem(";Star Python");
-       CourseComboBox.addItem("Star Android");
-       CourseComboBox.addItem("Star Big Data Programming");
-       CourseComboBox.addItem("Star Big Data Analytics");
-       CourseComboBox.addItem("Star Cloud Computing");
-       CourseComboBox.addItem("Star Cyber Secure User");
-       CourseComboBox.addItem("Ethical Hacking Expert");
-       CourseComboBox.addItem("star Forensic Investigator Computer Hacking - 007");
-       CourseComboBox.addItem("Star Secure Programmer Expert - Android");
-       CourseComboBox.addItem("Star Secure Programmer Expert - PHP");
-       CourseComboBox.addItem("Star Secure Programmer Expert - Java");
-       CourseComboBox.addItem(" Star Secure Programmer Expert - NET");
-       CourseComboBox.addItem("Star Mobile Forensic Advance Security");
-       CourseComboBox.addItem("Star Security Cyber Analytics");
-       CourseComboBox.addItem("Star Network Security Administrator Expert");
-       CourseComboBox.addItem("Star Incident Handler Expert - SIHE");
-       CourseComboBox.addItem("Star Penetration Testing Expert");
-       CourseComboBox.addItem("Star Expert Security Specialist");
-       CourseComboBox.addItem("Star Certified Software Testing");
-       CourseComboBox.addItem("Star Expert loT Specialist (SEIS)");
-       CourseComboBox.addItem("Star Digital Marketing Expert (SDME)");
-       CourseComboBox.addItem("Star Certified DevOps Expert");
-       CourseComboBox.addItem("Star Expert Blockchain Specialist");
+       CourseComboBox.addItem("Tally");
+       CourseComboBox.addItem("Tally Prime");
+       CourseComboBox.addItem("Oracle");
+       CourseComboBox.addItem("MS Office");
+       CourseComboBox.addItem("C & C++ Programming");
+       CourseComboBox.addItem("C Programming");
+       CourseComboBox.addItem("C++ Programming");
+       CourseComboBox.addItem("HTML");
+       CourseComboBox.addItem("PHP Developer");
+       CourseComboBox.addItem("Python");
+       CourseComboBox.addItem("Android");
+       CourseComboBox.addItem("Big Data Programming");
+       CourseComboBox.addItem("Big Data Analytics");
+       CourseComboBox.addItem("Cloud Computing");
+       CourseComboBox.addItem("Cyber Secure User");
+       CourseComboBox.addItem("Hacking Expert");
+       CourseComboBox.addItem("Forensic Investigator Computer Hacking - 007");
+       CourseComboBox.addItem("Secure Programmer Expert - Android");
+       CourseComboBox.addItem("Secure Programmer Expert - PHP");
+       CourseComboBox.addItem("Secure Programmer Expert - Java");
+       CourseComboBox.addItem("Secure Programmer Expert - .NET");
+       CourseComboBox.addItem("Mobile Forensic Advance Security");
+       CourseComboBox.addItem("Security Cyber Analytics");
+       CourseComboBox.addItem("Network Security Administrator Expert");
+       CourseComboBox.addItem("Incident Handler Expert - SIHE");
+       CourseComboBox.addItem("Penetration Testing Expert");
+       CourseComboBox.addItem("Expert Security Specialist");
+       CourseComboBox.addItem("Certified Software Testing");
+       CourseComboBox.addItem("Expert loT Specialist (SEIS)");
+       CourseComboBox.addItem("Digital Marketing Expert (SDME)");
+       CourseComboBox.addItem("Certified DevOps Expert");
+       CourseComboBox.addItem("Expert Blockchain Specialist");
+       CourseComboBox.addItem("DIPLOMA IN COMPUTER APPLICATION (DCA)");
+       CourseComboBox.addItem("HONORS DIPLOMA IN COMPUTER APPLICATION (HDCA)");
+       CourseComboBox.addItem("MASTER DIPLOMA IN COMPUTER APPLICATION (MDCA)");
+       CourseComboBox.addItem("HONORS DIPLOMA IN MULTIMEDIA PROGRAMMING (HDMP)");
+       CourseComboBox.addItem("MULTIMEDIA PROGRAMMING");
+       CourseComboBox.addItem("AUTO CADD");
+       CourseComboBox.addItem("SPOKEN ENGLISH");
+       CourseComboBox.addItem("SPOKEN ENGLISH- Level 1");
+       CourseComboBox.addItem("SPOKEN ENGLISH- Level 2");
+       CourseComboBox.addItem("SPOKEN ENGLISH- Level 3");
+       CourseComboBox.addItem("SPOKEN ENGLISH- Corporate Training");
+       CourseComboBox.addItem("DIPLOMA IN HARDWARE  NETWORK  (DHN)");
        CourseComboBox.setVisible(true);
        CourseComboBox.setEditable(true);
-       
+      
       
         
     }//GEN-LAST:event_CourseComboBoxActionPerformed
@@ -1314,24 +1254,11 @@ public class Registration extends javax.swing.JFrame implements Runnable{
               
     }//GEN-LAST:event_ClearButtonActionPerformed
 
-    private void AgreeRadioBUttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgreeRadioBUttonActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_AgreeRadioBUttonActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Back to previous page
         OptionForm optionform=new OptionForm();
         optionform.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void FatherNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FatherNameActionPerformed
-      
-    }//GEN-LAST:event_FatherNameActionPerformed
-
-    private void ContactNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContactNumberActionPerformed
-      
-    }//GEN-LAST:event_ContactNumberActionPerformed
 
     private void UnEmployeeRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnEmployeeRadioButtonActionPerformed
         // when one radio button is selecte is set off the another
@@ -1392,54 +1319,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
     }//GEN-LAST:event_AcademyBackgroundComboBoxActionPerformed
 
-    private void LastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameActionPerformed
-        // TODO add your handling code here:
-   
-    }//GEN-LAST:event_LastNameActionPerformed
-
-    private void InstruteNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstruteNameActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_InstruteNameActionPerformed
-
-    private void StudentNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentNumberActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_StudentNumberActionPerformed
-
-    private void AddharNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddharNumberActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_AddharNumberActionPerformed
-
-    private void AddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AddressActionPerformed
-
-    private void GetReligionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetReligionActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_GetReligionActionPerformed
-
-    private void CourseFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseFeesActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_CourseFeesActionPerformed
-
-    private void AmountPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AmountPaidActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_AmountPaidActionPerformed
-
-    private void SingelpayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SingelpayRadioButtonActionPerformed
-         // when one radio button is selecte is set off the another
-         if(SingelpayRadioButton.isSelected()){
-           DoublepayRadioButton.setSelected(false);
-           
-        }
-        
-    }//GEN-LAST:event_SingelpayRadioButtonActionPerformed
-
     private void DoublepayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoublepayRadioButtonActionPerformed
         // when one radio button is selecte is set off the another
         if(DoublepayRadioButton.isSelected()){
@@ -1447,11 +1326,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         }
            
     }//GEN-LAST:event_DoublepayRadioButtonActionPerformed
-
-    private void GSTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSTActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_GSTActionPerformed
 
     private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
         // Calculation for the fees
@@ -1462,7 +1336,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         long Gstamount=Coursefees*Gst/100;
         totalcoursefees=(int) (Coursefees+Gstamount);
         Balanceamount=totalcoursefees-Amountpaid;
-        ShowBill.setText("                             My First Step Computer Skill"
+        ShowBill.setText("                               My First Step Computer Skill"
                         +"\n Course Fees                                                           "+String.valueOf(Coursefees)
                         +"\n GST%                                          "+Gst+"%                  "+String.valueOf(Gstamount)
                         +"\n Total Course Fees                                                  "+String.valueOf(totalcoursefees)
@@ -1470,35 +1344,17 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                         +"\n Balance to pay                                                       "+String.valueOf(Balanceamount));
     }//GEN-LAST:event_CalculateActionPerformed
 
-    //adminsition number fech form the cdatabase
-    private void Administrationnumber(){
-        int Administrationnumber ;
-        try{
-            String sql= "SELECT COUNT(Firstname) FROM Registrationtable";
-            pst =con.prepareStatement(sql);
-            rs= pst.executeQuery();
-                
-            if(rs.next()){
-                Administrationnumber =rs.getInt("COUNT(Firstname)");
-                administrationnumber=Administrationnumber + 1000; 
-            }
-            
-            System.out.println("Load the Adminstraton number");
-          
-        }catch(Exception e){
-            
-            System.out.println("Faild to load the adminstration number"+e);
-            
-            }finally{
-                try{
-                    pst.close();
-                    System.out.println("successfully closed the database");
-                    
-                }catch(Exception e){
-                    System.out.println("4"+e);
-                 }
-             }
-    }   
+    private void SingelpayRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SingelpayRadioButtonActionPerformed
+        // when one radio button is selecte is set off the another
+        if(SingelpayRadioButton.isSelected()){
+            DoublepayRadioButton.setSelected(false);
+
+        }
+
+    }//GEN-LAST:event_SingelpayRadioButtonActionPerformed
+
+  
+   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1555,6 +1411,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextField ContactNumber;
     private javax.swing.JComboBox<String> CourseComboBox;
     private javax.swing.JTextField CourseFees;
+    private javax.swing.JPanel CoursePanel;
     private com.toedter.calendar.JDateChooser DOB;
     private javax.swing.JRadioButton DoublepayRadioButton;
     private javax.swing.JRadioButton EmployeeRadioButton;
@@ -1596,10 +1453,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -1623,7 +1478,6 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel56;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

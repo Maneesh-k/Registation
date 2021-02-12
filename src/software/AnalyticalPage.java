@@ -90,22 +90,29 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         Showtime = new javax.swing.JLabel();
         ShowDate = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        MonthShowChart = new javax.swing.JPanel();
+        MonthChartButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        MonthFromDate = new com.toedter.calendar.JDateChooser();
+        MonthToDate = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
-        ShowChart = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        RefferenceShowChart = new javax.swing.JPanel();
+        RefferenceCharButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        FromDate = new com.toedter.calendar.JDateChooser();
-        ToDate = new com.toedter.calendar.JDateChooser();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        RefferenceFromDate = new com.toedter.calendar.JDateChooser();
+        RefferenceToDate = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        RegistrationShowChart = new javax.swing.JPanel();
+        RegistrationChartButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        RegistratonFromDate = new com.toedter.calendar.JDateChooser();
+        RegistratonToDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,20 +132,81 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             }
         });
 
-        jButton1.setText("Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jPanel3.setBackground(new java.awt.Color(51, 0, 255));
+
+        MonthShowChart.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout MonthShowChartLayout = new javax.swing.GroupLayout(MonthShowChart);
+        MonthShowChart.setLayout(MonthShowChartLayout);
+        MonthShowChartLayout.setHorizontalGroup(
+            MonthShowChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        MonthShowChartLayout.setVerticalGroup(
+            MonthShowChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 279, Short.MAX_VALUE)
+        );
+
+        MonthChartButton.setText("Show Chart");
+        MonthChartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MonthChartButtonActionPerformed(evt);
             }
         });
 
-        ShowChart.setBackground(new java.awt.Color(255, 255, 255));
-        ShowChart.setLayout(new java.awt.BorderLayout());
+        jLabel3.setText("TO");
 
-        jButton2.setText("Show Chart");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("FROM");
+
+        MonthFromDate.setDateFormatString("yyyy-MM-dd");
+
+        MonthToDate.setDateFormatString("yyyy-MM-dd");
+        MonthToDate.setMinSelectableDate(new java.util.Date(-62135785719000L));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(jLabel5)
+                .addGap(75, 75, 75)
+                .addComponent(MonthFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(60, 60, 60)
+                .addComponent(MonthToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122)
+                .addComponent(MonthChartButton)
+                .addGap(40, 40, 40))
+            .addComponent(MonthShowChart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(MonthShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(MonthChartButton)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel5))
+                            .addComponent(MonthFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(MonthToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 38, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Month", jPanel3);
+
+        RefferenceShowChart.setBackground(new java.awt.Color(255, 255, 255));
+        RefferenceShowChart.setLayout(new java.awt.BorderLayout());
+
+        RefferenceCharButton.setText("Show Chart");
+        RefferenceCharButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                RefferenceCharButtonActionPerformed(evt);
             }
         });
 
@@ -146,116 +214,110 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
 
         jLabel2.setText("FROM");
 
-        FromDate.setDateFormatString("yyyy-MM-dd");
+        RefferenceFromDate.setDateFormatString("yyyy-MM-dd");
 
-        ToDate.setDateFormatString("yyyy-MM-dd");
-        ToDate.setMinSelectableDate(new java.util.Date(-62135785719000L));
+        RefferenceToDate.setDateFormatString("yyyy-MM-dd");
+        RefferenceToDate.setMinSelectableDate(new java.util.Date(-62135785719000L));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ShowChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(RefferenceShowChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2)
                 .addGap(75, 75, 75)
-                .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RefferenceFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(60, 60, 60)
-                .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RefferenceToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105)
-                .addComponent(jButton2)
+                .addComponent(RefferenceCharButton)
                 .addGap(89, 89, 89))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(ShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RefferenceShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(RefferenceCharButton)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addComponent(FromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(RefferenceFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(RefferenceToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Months", jPanel1);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
-        );
-
-        jButton5.setText("jButton5");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(637, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(40, 40, 40))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jTabbedPane2.addTab("Refference", jPanel3);
+        jTabbedPane2.addTab("Reffference", jPanel1);
 
         jTabbedPane1.addTab("Enquiry", jTabbedPane2);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout RegistrationShowChartLayout = new javax.swing.GroupLayout(RegistrationShowChart);
+        RegistrationShowChart.setLayout(RegistrationShowChartLayout);
+        RegistrationShowChartLayout.setHorizontalGroup(
+            RegistrationShowChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        RegistrationShowChartLayout.setVerticalGroup(
+            RegistrationShowChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 314, Short.MAX_VALUE)
         );
 
-        jButton3.setText("jButton3");
+        RegistrationChartButton.setText("Show Chart");
+        RegistrationChartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrationChartButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("TO");
+
+        jLabel7.setText("FROM");
+
+        RegistratonFromDate.setDateFormatString("yyyy-MM-dd");
+
+        RegistratonToDate.setDateFormatString("yyyy-MM-dd");
+        RegistratonToDate.setMinSelectableDate(new java.util.Date(-62135785719000L));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(RegistrationShowChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(625, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addGap(74, 74, 74)
+                .addComponent(jLabel7)
+                .addGap(75, 75, 75)
+                .addComponent(RegistratonFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(60, 60, 60)
+                .addComponent(RegistratonToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105)
+                .addComponent(RegistrationChartButton)
                 .addGap(57, 57, 57))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(RegistrationShowChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(RegistrationChartButton)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7))
+                            .addComponent(RegistratonFromDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(RegistratonToDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 43, Short.MAX_VALUE))
         );
 
@@ -267,9 +329,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                .addComponent(jButton4)
                 .addGap(203, 203, 203)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(167, 167, 167)
@@ -294,9 +354,7 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
                             .addComponent(jButton4)))
                     .addComponent(ShowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Showtime, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1)
                 .addGap(52, 52, 52))
         );
@@ -311,110 +369,84 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     
-    private void getEnquriydataGraph(){
-           // table-name where your date-column < '2013-12-13' and your date-column >= '2013-12-12'  
-         try{
-             String sql= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,COUNT(*) as TotalCount FROM Enquriytable;";
-                   pst =con.prepareStatement(sql);
-                   rs= pst.executeQuery();
-                   
-                  
-                     
-                   if(rs.next()){
-                      int Administrationnumber =rs.getInt("FriendsCount");
-                      System.out.println(Administrationnumber+"result");
-                   }
-                   
-            //       String sql= "SELECT * FROM   Enquriytable WHERE Dob BETWEEN '?' and '?';"
-              //                  + "SELECT SUM(CASE WHEN aboutMyfs = 'Online' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
-                //                +"SUM(CASE WHEN aboutMyfs = 'Advertisement' THEN 1 ELSE 0 END) as AdvertisementCount,SUM(CASE WHEN aboutMyfs = 'Pamphlet' THEN 1 ELSE 0 END) as PamphletCount,"
-                  //              +"SUM(CASE WHEN aboutMyfs = 'Other' THEN 1 ELSE 0 END) as OtherCount,SUM(CASE WHEN aboutMyfs = 'none' THEN 1 ELSE 0 END) as noneCount,"
-                    //            +"COUNT(*) as TotalCount FROM Enquriytable;";
-                     pst =con.prepareStatement(sql);
-                      rs= pst.executeQuery();
-                //     pst.setString(1, ((JTextField)FromDate.getDateEditor().getUiComponent()).getText());    //1
-                //     pst.setString(2, ((JTextField)ToDate.getDateEditor().getUiComponent()).getText());    //2 
-                     
-                     
-                     
-            /*    String sql1= "SELECT SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as OnlineCount,SUM(CASE WHEN aboutMyfs = 'Friends' THEN 1 ELSE 0 END) as FriendsCount,"
-                                +"SUM(CASE WHEN aboutMyfs = 'Advertisement' THEN 1 ELSE 0 END) as AdvertisementCount,SUM(CASE WHEN aboutMyfs = 'Pamphlet' THEN 1 ELSE 0 END) as PamphletCount,"
-                                +"SUM(CASE WHEN aboutMyfs = 'Other' THEN 1 ELSE 0 END) as OtherCount,SUM(CASE WHEN aboutMyfs = 'none' THEN 1 ELSE 0 END) as noneCount,"
-                                +"COUNT(*) as TotalCount FROM Enquriytable;";
-
-                   pst =con.prepareStatement(sql1);*/
-                   
-                  //    if(rs.next()){
-                  //  OnlineCount=rs.getInt("COUNT(OnlineCount)"); 
-                  // FriendsCount= rs.getInt("COUNT(FriendsCount)");
-                   //AdvertisementCount= rs.getInt("COUNT(AdvertisementCount)");
-               //    PamphletCount= rs.getInt("COUNT(PamphletCount)");
-               //    OtherCount= rs.getInt("COUNT(OtherCount)");
-                //   noneCount= rs.getInt("COUNT(noneCount)");
-                //   }
-                   
-                   
-                   
-                  // System.out.println(FriendsCount);
-                     
-                   
-                         
-                        System.out.println("1");
-          
-                 
-            
-             }catch(Exception e){
-                 System.out.println("2"+e);
-             }finally{
-                 try{
-                    
-                     pst.close();
-                     System.out.println("3");
-                 }catch(Exception e){
-                     System.out.println("4"+e);
-                 }
-             }
-    }
-   
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+  
+    private void RefferenceCharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefferenceCharButtonActionPerformed
         // TODO add your handling code here:
           
         
+        ChartRefference chartrefference=new ChartRefference();
+        FriendsCount=chartrefference.Returnfriends();
+        OnlineCount=chartrefference.ReturnOnline();
+        AdvertisementCount =chartrefference.ReturnAdvertisement();
+        OtherCount=chartrefference.ReturnOther();
+        PamphletCount=chartrefference.ReturnPamphlet();
+        noneCount=chartrefference.Returnnone();
         
-    
-      
-      // OnlineCount
-       //FriendsCount
-        //AdvertisementCount 
-          //OtherCount
-            //PamphletCount
-              //noneCount
-              
-        getEnquriydataGraph();
-        DefaultCategoryDataset dod=new DefaultCategoryDataset();
-        dod.setValue(OnlineCount,"No.Of join","online");
-        dod.setValue(AdvertisementCount,"No.Of join","Advertisement");
-        dod.setValue(FriendsCount,"No.Of join","Friends");
-        dod.setValue(PamphletCount,"No.Of join","Pamphlet");
-        dod.setValue(OtherCount,"No.Of join","Other");
-        dod.setValue(noneCount,"No.Of join","none");
-        JFreeChart jchart=ChartFactory.createBarChart3D("Student Record","Months","No.Of join",dod,PlotOrientation.VERTICAL,true,true,false);
+        System.out.println(FriendsCount + " result");     
+
+        DefaultCategoryDataset Refferencedod=new DefaultCategoryDataset();
+        Refferencedod.setValue(OnlineCount,"No.Of join","online");
+        Refferencedod.setValue(AdvertisementCount,"No.Of join","Advertisement");
+        Refferencedod.setValue(FriendsCount,"No.Of join","Friends");
+        Refferencedod.setValue(PamphletCount,"No.Of join","Pamphlet");
+        Refferencedod.setValue(OtherCount,"No.Of join","Other");
+        Refferencedod.setValue(noneCount,"No.Of join","none");
+        JFreeChart Refferencechart=ChartFactory.createBarChart("Student Record","Months","No.Of join",Refferencedod,PlotOrientation.VERTICAL,true,true,false);
      
-            CategoryPlot plot=jchart.getCategoryPlot();
+            CategoryPlot plot=Refferencechart.getCategoryPlot();
             plot.setRangeGridlinePaint(Color.black);
-            ChartPanel barPanel=new ChartPanel(jchart) ;
-            ShowChart.removeAll();
-            ShowChart.add(barPanel,BorderLayout.CENTER);
-            ShowChart.validate();
+            ChartPanel RefferencebarPanel=new ChartPanel(Refferencechart) ;
+            RefferenceShowChart.removeAll();
+            RefferenceShowChart.add(RefferencebarPanel,BorderLayout.CENTER);
+            RefferenceShowChart.validate();
             
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_RefferenceCharButtonActionPerformed
+
+    private void RegistrationChartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationChartButtonActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+
+        DefaultCategoryDataset Registrationdod=new DefaultCategoryDataset();
+        Registrationdod.setValue(OnlineCount,"No.Of join","online");
+        Registrationdod.setValue(AdvertisementCount,"No.Of join","Advertisement");
+        Registrationdod.setValue(FriendsCount,"No.Of join","Friends");
+        Registrationdod.setValue(PamphletCount,"No.Of join","Pamphlet");
+        Registrationdod.setValue(OtherCount,"No.Of join","Other");
+        Registrationdod.setValue(noneCount,"No.Of join","none");
+        JFreeChart Registrationchart=ChartFactory.createBarChart3D("Student Record","Months","No.Of join",Registrationdod,PlotOrientation.VERTICAL,true,true,false);
+     
+            CategoryPlot plot=Registrationchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.black);
+            ChartPanel RegistrationbarPanel=new ChartPanel(Registrationchart) ;
+              RegistrationShowChart.removeAll();
+             RegistrationShowChart.add(RegistrationbarPanel,BorderLayout.CENTER);
+             RegistrationShowChart.validate();
+          
+    }//GEN-LAST:event_RegistrationChartButtonActionPerformed
+
+    private void MonthChartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthChartButtonActionPerformed
+        // TODO add your handling code here:
+          DefaultCategoryDataset Monthdod=new DefaultCategoryDataset();
+        Monthdod.setValue(1,"No.Of join","online");
+        Monthdod.setValue(2,"No.Of join","Advertisement");
+        Monthdod.setValue(3,"No.Of join","Friends");
+        Monthdod.setValue(4,"No.Of join","Pamphlet");
+        Monthdod.setValue(5,"No.Of join","Other");
+        Monthdod.setValue(6,"No.Of join","none");
+        JFreeChart Monthchart=ChartFactory.createLineChart3D("Student Record","Months","No.Of join",Monthdod,PlotOrientation.VERTICAL,true,true,false);
+     
+            CategoryPlot plot=Monthchart.getCategoryPlot();
+            plot.setRangeGridlinePaint(Color.black);
+            ChartPanel MonthPanel=new ChartPanel(Monthchart) ;
+            MonthShowChart.removeAll();
+            MonthShowChart.add(MonthPanel,BorderLayout.CENTER);
+            MonthShowChart.validate();
+            MonthShowChart.setVisible(true);
+    }//GEN-LAST:event_MonthChartButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -445,32 +477,37 @@ public class AnalyticalPage extends javax.swing.JFrame  implements Runnable {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AnalyticalPage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AnalyticalPage().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser FromDate;
-    private javax.swing.JPanel ShowChart;
+    private javax.swing.JButton MonthChartButton;
+    private com.toedter.calendar.JDateChooser MonthFromDate;
+    private javax.swing.JPanel MonthShowChart;
+    private com.toedter.calendar.JDateChooser MonthToDate;
+    private javax.swing.JButton RefferenceCharButton;
+    private com.toedter.calendar.JDateChooser RefferenceFromDate;
+    private javax.swing.JPanel RefferenceShowChart;
+    private com.toedter.calendar.JDateChooser RefferenceToDate;
+    private javax.swing.JButton RegistrationChartButton;
+    private javax.swing.JPanel RegistrationShowChart;
+    private com.toedter.calendar.JDateChooser RegistratonFromDate;
+    private com.toedter.calendar.JDateChooser RegistratonToDate;
     private javax.swing.JLabel ShowDate;
     private javax.swing.JLabel Showtime;
-    private com.toedter.calendar.JDateChooser ToDate;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
