@@ -74,7 +74,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
           AdministionNumberCount administionnumbercount=new AdministionNumberCount(); 
         administrationnumber= administionnumbercount.Return();
         AdministrationNumber.setText(String.valueOf(administrationnumber));
-     
+        
+       
         //declare the componet to be visible     
         InstituteLabel.setVisible(false);
         InstruteName.setVisible(false);
@@ -84,9 +85,108 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         AcademyBackgroundComboBox.setVisible(false);
         groupLabel.setVisible(false);
         GetGroup.setVisible(false);
+        
     
     }
+       private  void GetDatas(){
+         if(!AgreeRadioBUtton.isSelected()){
+            JOptionPane.showMessageDialog(this,"Terms and conditiion are not agreed");
+
+        }{
+            //get user details
+
+            Firstname=FirstName.getText();
+            Lastname=LastName.getText();
+            Fathername=FatherName.getText();
+            Mothername=MotherName.getText();
+            Instrutename=InstruteName.getText();
+            Studentnumber=StudentNumber.getText();
+            Contactnumber=ContactNumber.getText();
+            Addharnumber= AddharNumber.getText();
+            Mailid=MailId.getText().toLowerCase();
+            Course=CourseComboBox.getSelectedItem().toString();
+            AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
+            Religion=GetReligion.getText();
+            // Dob= SDF.format(DOB.getValue());
+            PG=PGName.getText();
+            Group=GetGroup.getText();
+            dateTime=formatter.format(DATE);
+            Dob=((JTextField)DOB.getDateEditor().getUiComponent()).getText();
+           
+            address=Address.getText();
+
+            StudentWa=null;
+            if(StudentwaCheckBox.isSelected()){
+                StudentWa="yes";
+            }else{
+                StudentWa="no";
+            }
+
+            ParentsWa=null;
+            if(ParentwaCheckBox.isSelected()){
+                ParentsWa="yes";
+            }else{
+                ParentsWa="no";
+            }
+
+            Gender=null;
+            if(MaleRadioButton.isSelected()){
+                Gender="Male";
+            }if(FemaleRadioButton.isSelected()){
+                Gender="Female";
+            } if(OtherGenderRadioButton.isSelected()){
+                Gender="Other";
+            }
+
+            Institute =null;
+            if(SchoolRadioButton.isSelected()){
+                Institute ="School";
+            }if(CollegeRadioButton.isSelected()){
+                Institute ="College";
+            }if(OtherEducationRadioButton.isSelected()){
+                Institute ="Other";
+            }if(EmployeeRadioButton.isSelected()){
+                Institute ="Employee";
+            }if(UnEmployeeRadioButton.isSelected()){
+                Institute="UnEmployee";
+            }
+
+            Payment=null;
+            if(DoublepayRadioButton.isSelected()){
+                Payment="Double Payment";
+            }
+            if(SingelpayRadioButton.isSelected()){
+                Payment="Single Payment";
+            }
+    }
+    }
     
+   private void Coursefee(){
+          try{
+           //SELECT UNIQUE column_name  FROM table_name;  
+                   String sql="SELECT Course,Price   FROM Coursedata WHERE Course='"+Course+"';";
+                   pst =con.prepareStatement(sql);
+                   rs=pst.executeQuery();
+                   
+                   if(rs.next()){
+                    Coursefees= rs.getLong("Price");
+                    
+                   }
+                   
+            
+                    System.out.println("1");
+            }catch(Exception e){
+                 System.out.println("2"+e);
+             }finally{
+                 try{
+                    
+                     pst.close();
+                     System.out.println("3");
+                 }catch(Exception e){
+                     System.out.println("4"+e);
+                 }
+             }
+    }
       
     //override for clock thread
     @Override
@@ -155,6 +255,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         CoursePanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         CourseComboBox = new javax.swing.JComboBox<>();
+        SelectCourse = new javax.swing.JButton();
         jPanel56 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         Address = new javax.swing.JTextField();
@@ -501,6 +602,16 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        SelectCourse.setBackground(new java.awt.Color(255, 255, 255));
+        SelectCourse.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        SelectCourse.setText("Select");
+        SelectCourse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        SelectCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectCourseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CoursePanelLayout = new javax.swing.GroupLayout(CoursePanel);
         CoursePanel.setLayout(CoursePanelLayout);
         CoursePanelLayout.setHorizontalGroup(
@@ -510,15 +621,19 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 .addComponent(jLabel7)
                 .addGap(121, 121, 121)
                 .addComponent(CourseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(600, Short.MAX_VALUE))
+                .addGap(211, 211, 211)
+                .addComponent(SelectCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         CoursePanelLayout.setVerticalGroup(
             CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CoursePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CourseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                .addGroup(CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(SelectCourse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(CoursePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CourseComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -730,6 +845,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         jLabel29.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel29.setText("Course Fees");
 
+        CourseFees.setEditable(false);
         CourseFees.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         jLabel30.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -920,8 +1036,8 @@ public class Registration extends javax.swing.JFrame implements Runnable{
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -954,82 +1070,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
        
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         //Save the Student data in sqlite database
-       if(!AgreeRadioBUtton.isSelected()){
-            JOptionPane.showMessageDialog(this,"Terms and conditiion are not agreed");  
-       
-    }{
-         //get user details 
-         
-          
-
-        Firstname=FirstName.getText().toString();
-        Lastname=LastName.getText().toString();
-        Fathername=FatherName.getText().toString();
-        Mothername=MotherName.getText().toString();
-        Instrutename=InstruteName.getText().toString();
-        Studentnumber=StudentNumber.getText();
-        Contactnumber=ContactNumber.getText();
-        Addharnumber= AddharNumber.getText();
-        Mailid=MailId.getText().toLowerCase().toString();
-        Course=CourseComboBox.getSelectedItem().toString();
-        AcademyBackground=AcademyBackgroundComboBox.getSelectedItem().toString();
-        Religion=GetReligion.getText().toString();
-       // Dob= SDF.format(DOB.getValue());
-        PG=PGName.getText();
-        Group=GetGroup.getText();
-        dateTime=formatter.format(DATE);
-         Dob=((JTextField)DOB.getDateEditor().getUiComponent()).getText();   
-             
-       
-        address=Address.getText();
-        
-               
-        StudentWa=null;
-        if(StudentwaCheckBox.isSelected()){
-            StudentWa="yes";
-        }else{
-            StudentWa="no";
-        }
-        
-        ParentsWa=null;
-        if(ParentwaCheckBox.isSelected()){
-            ParentsWa="yes";
-        }else{
-            ParentsWa="no";
-        }
-        
-        
-        Gender=null;
-        if(MaleRadioButton.isSelected()){
-            Gender="Male";
-        }if(FemaleRadioButton.isSelected()){
-            Gender="Female";
-        } if(OtherGenderRadioButton.isSelected()){
-            Gender="Other";
-        }
-        
-        
-        Institute =null;
-        if(SchoolRadioButton.isSelected()){
-          Institute ="School";
-        }if(CollegeRadioButton.isSelected()){
-            Institute ="College";
-        }if(OtherEducationRadioButton.isSelected()){
-            Institute ="Other";
-        }if(EmployeeRadioButton.isSelected()){
-           Institute ="Employee";
-        }if(UnEmployeeRadioButton.isSelected()){
-            Institute="UnEmployee";
-        }
-       
-        
-             Payment=null;
-       if(DoublepayRadioButton.isSelected()){
-           Payment="Double Payment";
-       }
-       if(SingelpayRadioButton.isSelected()){
-            Payment="Single Payment";
-       }
+      GetDatas();
        
        //sent thew data to next page for printout
        PrintoutPage printoutpage=new PrintoutPage();
@@ -1073,7 +1114,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             pst.setInt(27,totalcoursefees );                                                              //27
             pst.setLong(28, Balanceamount);                                                               //28
             pst.setString(29, dateTime);                                                                  //29
-                                
+            pst.setString(30, "null");                                                                  //30                 
              
             pst.execute();
             JOptionPane.showMessageDialog(this,"Saved,");
@@ -1092,7 +1133,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
             }
         }
         stop();
-    }          
+             
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void FemaleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemaleRadioButtonActionPerformed
@@ -1329,7 +1370,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
 
     private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
         // Calculation for the fees
-        Coursefees=Long.valueOf(CourseFees.getText());
+       
         Gst=Integer.valueOf(GST.getText());
         Amountpaid=Long.valueOf(AmountPaid.getText());
         
@@ -1352,6 +1393,13 @@ public class Registration extends javax.swing.JFrame implements Runnable{
         }
 
     }//GEN-LAST:event_SingelpayRadioButtonActionPerformed
+
+    private void SelectCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectCourseActionPerformed
+        
+        Course=CourseComboBox.getSelectedItem().toString();
+        Coursefee();
+        CourseFees.setText(String.valueOf(Coursefees));
+    }//GEN-LAST:event_SelectCourseActionPerformed
 
   
    
@@ -1434,6 +1482,7 @@ public class Registration extends javax.swing.JFrame implements Runnable{
     private javax.swing.JCheckBox ParentwaCheckBox;
     private javax.swing.JPanel PaymentPanel;
     private javax.swing.JRadioButton SchoolRadioButton;
+    private javax.swing.JButton SelectCourse;
     private javax.swing.JTextArea ShowBill;
     private javax.swing.JLabel ShowTime;
     private javax.swing.JLabel Showdate;

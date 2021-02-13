@@ -9,6 +9,7 @@ package software;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,6 +31,9 @@ public class LoginPage extends javax.swing.JFrame {
         initComponents();
        con=ConnectionDb.DbConnection();
        
+        ImageIcon icon;
+        icon= new ImageIcon("D:\\Regestation form\\Software\\Logo (2).png");
+        setIconImage(icon.getImage());
        
     }
 

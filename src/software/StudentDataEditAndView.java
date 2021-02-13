@@ -4,21 +4,25 @@
  * and open the template in the editor.
  */
 package software;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import net.proteanit.sql.DbUtils;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  *
  * @author ELCOT
@@ -69,6 +73,9 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
         initComponents();
           con=ConnectionDb.DbConnection();
           DisplayTable();
+           ImageIcon icon;
+        icon= new ImageIcon("D:\\Regestation form\\Software\\Logo (2).png");
+        setIconImage(icon.getImage());
     }
     
     
@@ -151,7 +158,7 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
 
         PrintOutButton.setBackground(new java.awt.Color(255, 255, 255));
         PrintOutButton.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        PrintOutButton.setText("Print");
+        PrintOutButton.setText("Export (Excel)");
         PrintOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PrintOutButtonActionPerformed(evt);
@@ -202,14 +209,14 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,7 +230,72 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
 
     private void PrintOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintOutButtonActionPerformed
         // TODO add your handling code here:
-         String path="";
+           FileOutputStream excelFOU= null;
+             BufferedOutputStream excelBOU=null;
+              XSSFWorkbook excelJTableExporter=null;
+        //choose location for saving excel files
+        JFileChooser excelFileChooser=new JFileChooser("C:\\Users\\Public\\Documents");
+        //change dialog box title
+         excelFileChooser.setDialogTitle("Save As");
+        //only filter files with these extenstion "xls","xlsx","xlsm"
+        FileNameExtensionFilter fnef=new FileNameExtensionFilter("EXCEL FILES","xls","xlsx","xlsm");
+        excelFileChooser.setFileFilter(fnef);
+        int excelChooser= excelFileChooser.showSaveDialog(null);
+        
+        //check if save button is clicked
+        if(excelChooser==JFileChooser.APPROVE_OPTION){
+         
+            try {
+                //immport excel poi libraries to netbeans
+                excelJTableExporter= new XSSFWorkbook();
+                XSSFSheet excelSheet= excelJTableExporter.createSheet("Studentdata");
+                //loop ot get Jtable Column and rows
+                for (int i=0;i<ShowData.getRowCount();i++){
+                    XSSFRow excelRow=excelSheet.createRow(i);
+                    for(int j=0;j<ShowData.getColumnCount();j++){
+                        XSSFCell excelCell =excelRow.createCell(j);
+                        excelCell.setCellValue(ShowData.getValueAt(i,j).toString());
+                    }
+                }       //Append xlsx file extension to selected files. to create unique file name
+                 
+                excelFOU = new FileOutputStream(excelFileChooser.getSelectedFile()+".xlsx");
+                 excelBOU= new BufferedOutputStream(excelFOU);
+                excelJTableExporter.write(excelBOU);
+                JOptionPane.showMessageDialog(null,"Exported Successfully" );
+                
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }  catch (IOException ex) {
+                   ex.printStackTrace();
+               }   finally {
+                try {
+                    if(excelBOU!=null){
+                         excelBOU.close();
+                    }
+                    if(excelFOU!=null){
+                         excelFOU.close();
+                    }
+                    
+                    if(excelJTableExporter!=null){
+                         excelJTableExporter .close();
+                    }
+                   
+                } catch (IOException ex) {
+                    Logger.getLogger(StudentDataEditAndView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      /*   String path="";
         JFileChooser j=new JFileChooser();
         j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x=j.showSaveDialog(this);
@@ -361,7 +433,7 @@ public class StudentDataEditAndView extends javax.swing.JFrame {
              System.out.println("Printout Fails"+ex);
         }
          doc.close();      
-          JOptionPane.showMessageDialog(rootPane,"Downloaded");
+          JOptionPane.showMessageDialog(rootPane,"Downloaded");*/
     }//GEN-LAST:event_PrintOutButtonActionPerformed
 
     /**

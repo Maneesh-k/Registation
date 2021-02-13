@@ -6,14 +6,16 @@
 package software;
 
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.ImageIcon;
 
 
 public class AdminLogin extends javax.swing.JFrame  {
 
    
-    
+    ImageIcon icon;
     //Data Base connection
     java.sql.Connection con=null;
     PreparedStatement pst=null;
@@ -22,12 +24,18 @@ public class AdminLogin extends javax.swing.JFrame  {
     public AdminLogin() {
         //intilaised the Jframe properties
         initComponents();
-        
+         
+        icon= new ImageIcon("D:\\Regestation form\\Software\\Logo (2).png");
+        setIconImage(icon.getImage());
+       // SetIcon();
         //Data Base connection
         con=ConnectionDb.DbConnection();
-      
+      Forgotpassword.setVisible(false);
     }
 
+    private void SetIcon(){
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Logo (2).png")));
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -43,6 +51,7 @@ public class AdminLogin extends javax.swing.JFrame  {
         GetUserid = new javax.swing.JTextField();
         LoginButton = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
+        Forgotpassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 153, 255));
@@ -120,6 +129,11 @@ public class AdminLogin extends javax.swing.JFrame  {
             }
         });
 
+        Forgotpassword.setBackground(new java.awt.Color(255, 255, 255));
+        Forgotpassword.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        Forgotpassword.setText("Forgot Password");
+        Forgotpassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,7 +146,9 @@ public class AdminLogin extends javax.swing.JFrame  {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(367, 367, 367)
                         .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(335, 335, 335)
+                        .addGap(86, 86, 86)
+                        .addComponent(Forgotpassword)
+                        .addGap(86, 86, 86)
                         .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -148,16 +164,21 @@ public class AdminLogin extends javax.swing.JFrame  {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Forgotpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel1)
+                        .addGap(54, 54, 54)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
 
@@ -202,6 +223,7 @@ public class AdminLogin extends javax.swing.JFrame  {
             {
             //when empty box is clicked to login show eror in message box
             JOptionPane.showMessageDialog(rootPane, "Please Enter Userid and Password");
+            Forgotpassword.setVisible(true);
         }//if password is wrong
         else{
             //if both are wrong show invalid
@@ -245,6 +267,7 @@ public class AdminLogin extends javax.swing.JFrame  {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton ClearButton;
+    private javax.swing.JButton Forgotpassword;
     private javax.swing.JTextField GetUserid;
     private javax.swing.JPasswordField Getpassword;
     private javax.swing.JButton LoginButton;
