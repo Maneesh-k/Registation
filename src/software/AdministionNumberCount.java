@@ -43,6 +43,7 @@ public class AdministionNumberCount {
          }
      
 }
+    
   
              
      private void RegistrationMaxCount(){
@@ -108,6 +109,7 @@ public class AdministionNumberCount {
      }
 }
      }
+     
      
      int Return(){
          return administrationnumber;

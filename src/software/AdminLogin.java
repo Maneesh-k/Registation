@@ -133,6 +133,11 @@ public class AdminLogin extends javax.swing.JFrame  {
         Forgotpassword.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         Forgotpassword.setText("Forgot Password");
         Forgotpassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Forgotpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ForgotpasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,14 +153,14 @@ public class AdminLogin extends javax.swing.JFrame  {
                         .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
                         .addComponent(Forgotpassword)
-                        .addGap(86, 86, 86)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(312, 312, 312))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(309, Short.MAX_VALUE)
+                .addGap(309, 309, 309)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(272, 272, 272))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -166,7 +171,7 @@ public class AdminLogin extends javax.swing.JFrame  {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(583, Short.MAX_VALUE)
                         .addComponent(Forgotpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -174,12 +179,12 @@ public class AdminLogin extends javax.swing.JFrame  {
                         .addGap(13, 13, 13)
                         .addComponent(jLabel1)
                         .addGap(54, 54, 54)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(69, 69, 69)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LoginButton)
                             .addComponent(ClearButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(138, 138, 138))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,6 +205,7 @@ public class AdminLogin extends javax.swing.JFrame  {
         // Back to FrontPage
         FrontPage frontpage=new FrontPage();
         frontpage.setVisible(true);
+        dispose();
        
     }//GEN-LAST:event_BackButtonActionPerformed
 
@@ -218,31 +224,34 @@ public class AdminLogin extends javax.swing.JFrame  {
             {
                   AdminOptionForm adminoption = new AdminOptionForm();
                  adminoption.setVisible(true);
+                 dispose();
                 // if id and password are empty
             }else if(GetUserid.getText().isEmpty())
             {
             //when empty box is clicked to login show eror in message box
             JOptionPane.showMessageDialog(rootPane, "Please Enter Userid and Password");
-            Forgotpassword.setVisible(true);
+            
         }//if password is wrong
         else{
             //if both are wrong show invalid
             JOptionPane.showMessageDialog(rootPane, "Invalid Userid Or Password");
+            Forgotpassword.setVisible(true);
         }
         }catch(Exception e){
             //throw exception if any error occur
-            System.out.println(e);
+            System.out.println("Error in login"+e);
         }
         //close the database after it use
         finally{
                  try{
                      rs.close();
                      pst.close();
-                     System.out.println("3");
+                     System.out.println("Successfully closed database");
                  }catch(Exception e){
-                     System.out.println("4"+e);
+                     System.out.println("Fail closed database"+e);
                  }
-             }                   
+             }  
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
@@ -250,6 +259,11 @@ public class AdminLogin extends javax.swing.JFrame  {
         GetUserid.setText(null);
         Getpassword.setText(null);
     }//GEN-LAST:event_ClearButtonActionPerformed
+
+    private void ForgotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ForgotpasswordActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane,"This feature is Not Enabled");
+    }//GEN-LAST:event_ForgotpasswordActionPerformed
 
     /**
      * @param args the command line arguments

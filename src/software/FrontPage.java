@@ -24,6 +24,7 @@ public class FrontPage extends javax.swing.JFrame  implements Runnable  {
      //for clock
     int hour,minute,second;
     Thread Ftime=new Thread( this);
+    ImageIcon icon;
     
     public FrontPage() {
         initComponents();
@@ -31,7 +32,7 @@ public class FrontPage extends javax.swing.JFrame  implements Runnable  {
           Showdate.setText(String.valueOf(java.time.LocalDate.now()));
           //time start
           Ftime.start();
-           ImageIcon icon;
+          
         icon= new ImageIcon("D:\\Regestation form\\Software\\Logo (2).png");
         setIconImage(icon.getImage());
          
@@ -130,6 +131,7 @@ public class FrontPage extends javax.swing.JFrame  implements Runnable  {
         ExitButton.setBackground(new java.awt.Color(255, 255, 255));
         ExitButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         ExitButton.setText("Exit");
+        ExitButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExitButtonActionPerformed(evt);
@@ -229,15 +231,18 @@ public class FrontPage extends javax.swing.JFrame  implements Runnable  {
     private void RegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrationButtonActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        LoginPage loginpage=new LoginPage();
+        UserLoginPage loginpage=new UserLoginPage();
         loginpage.setVisible(true);
         suspend();
+       dispose();
+        
     }//GEN-LAST:event_RegistrationButtonActionPerformed
 
     private void LogINButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogINButtonActionPerformed
         AdminLogin adminlogin=new AdminLogin();
         adminlogin.setVisible(true);
         suspend();
+        dispose();
        
     }//GEN-LAST:event_LogINButtonActionPerformed
 
